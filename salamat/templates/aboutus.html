@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load project_tags cms_tags %}
+{% block content %}
+
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="" title="">{% page_attribute 'page_title' %}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page aboutus-page">
+            <div class="container">
+                <div class="image">
+                    {% placeholder "image" %}
+                    <div class="caption">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2 class="h1">ТОО ЖАРАТ</h2>
+                                <h3 class="">все для строительства</h3>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="/contacts/" title="" class="btn mw"><span>Напишите нам</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title title-1">
+                    <h1 class="grey m-t-3 m-b-2 text-xs-center"><span>{% page_attribute 'page_title' %}</span></h1>
+                </div>
+                <div class="article-description">
+                    {% placeholder "content" %}
+
+                </div>
+            </div>
+        </div>
+        <div class="module news stores text-xs-center">
+            <div class="container">
+                {% get_projects %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,17 @@
+
+{% load i18n spurl %}
+
+{% if page_obj.has_other_pages %}
+
+<div class="pages">
+    {% with from=page_obj.start_index until=page_obj.end_index count=page_obj.paginator.num_pages %}
+        {% if page_obj.has_previous %}
+            <a href="{% spurl base='' query=request.GET set_query='page={{ page_obj.previous_page_number }}' %}" class="back"></a>
+        {% endif %}
+        <span>{{page_obj.number}} {% trans 'из' %} {{count}}</span>
+        {% if page_obj.has_next %}
+            <a href="{% spurl base='' query=request.GET set_query='page={{ page_obj.next_page_number }}' %}" class="next"></a>
+        {% endif %}
+    {% endwith %}
+</div>
+{% endif %}

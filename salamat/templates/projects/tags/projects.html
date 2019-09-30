@@ -1,0 +1,19 @@
+<div class="title title-2">
+    <h2 class="h1 m-b-2 grey"><span>Наши объекты</span></h2>
+</div>
+<div class="carousel-2">
+    {% for object in objects %}
+        <div class="item">
+            <a href="{{ object.url }}" title="" style="background: url({{ object.image.url }});">
+                <div class="caption">
+                    <div class="middle">
+                        {% if object.logo %}
+                        <img src="{{ object.logo.url }}" alt="" />
+                        {% endif %}
+                        <h4 class="black">{{ object.title }}</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>

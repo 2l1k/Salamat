@@ -1,0 +1,15 @@
+<div class="carousel-2">
+    {% for p_cat in cats %}
+    <div>
+        <h4 {% if p_cat.icon_red %}style="background: url({{ p_cat.icon_red.url }});"{% endif %}>{{ p_cat.title }}</h4>
+        <ul>
+            {% for cat in p_cat.childs.all %}
+            <li>
+                <a href="{{ cat.url }}" title="">{{ cat.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+
+</div>

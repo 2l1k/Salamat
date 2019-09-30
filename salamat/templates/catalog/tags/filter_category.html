@@ -1,0 +1,77 @@
+
+<ul id="catalog">
+    {% for cat in cats %}
+        <li>
+            <a href="{{ cat.url }}" title="" style="background: url({{ cat.icon.url }});">{{ cat.title }}</a>
+            <ul>
+            {% for cat2 in cat.childs.all %}
+                <li>
+                    <a href="{{ cat2.url }}" title="">{{ cat2.title }}</a>
+                    <ul>
+                        {% for cat3  in cat2.childs.all %}
+                            <li><a href="{{ cat3.url }}" title="">{{ cat3.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+
+
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 pull-xs-none text-xs-center">
+					<div class="filter row">
+						<div class="col-md-5">
+
+                            {% for cat in cats|slice:":4" %}
+							<div class="select" style="background-image: url({{ cat.icon.url }});">
+								<a href="#build{{ cat.id }}" title="" class="area-btn">
+									<span>{{ cat.title }}</span>
+								</a>
+								<div id="build{{ cat.id }}" class="area">
+
+									{% for company in companies %}
+									{% if company.category.id  == cat.id %}
+									<label>
+										<a href="{{ company.url }}">{{ company.company_name }}</a>
+									</label>
+									{% endif %}
+									{% endfor %}
+
+								</div>
+							</div>
+                            {% endfor %}
+
+
+						</div>
+						<div class="col-md-5 col-md-offset-2">
+
+							{% for cat in cats|slice:"4:" %}
+							<div class="select" style="background-image: url({{ cat.icon.url }});">
+								<a href="#build{{ cat.id }}" title="" class="area-btn">
+									<span>{{ cat.title }}</span>
+								</a>
+								<div id="build{{ cat.id }}" class="area">
+
+									{% for company in companies %}
+									{% if company.category.id  == cat.id %}
+									<label>
+										<a href="{{ company.url }}">{{ company.company_name }}</a>
+									</label>
+									{% endif %}
+									{% endfor %}
+
+								</div>
+							</div>
+                            {% endfor %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>

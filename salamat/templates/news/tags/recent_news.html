@@ -1,0 +1,19 @@
+
+<div class="title title-1">
+    <h2 class="h1 m-b-2 grey"><span>Новости</span></h2>
+</div>
+<a href="{% url "news_list" %}" title="" class="m-b-2 grey">Читать все новости</a>
+<div class="row">
+    {% for news in news_list %}
+        <div class="col-md-4 item">
+            <a href="{{ news.url }}" title="" style="background: url({{ news.image.url }});">
+                <div class="caption">
+                    <div class="middle">
+                        <h4 class="black">{{ news.title }}</h4>
+                        <span>{{ news.date_updated|date:"d.m.Y" }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>

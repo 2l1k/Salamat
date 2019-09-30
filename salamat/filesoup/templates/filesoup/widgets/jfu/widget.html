@@ -1,0 +1,60 @@
+{% load i18n %}
+
+  {% comment %}{% if uploader.ismultiple %}{% endcomment %}
+    {% comment %} Multiple uploader {% endcomment %}
+
+    <div class="fs-widget fs-widget-multiple {{ widget.css_class }}"
+        data-uploader="{{ widget.meta.initializer }}">
+
+        <div class="fs-files" data-files>
+            {% for form in uploader.formset %}
+                {% include widget.file_template_name %}
+            {% endfor %}
+        </div>
+
+        <div class="fs-alerts" data-alerts></div>
+
+        <div class="fs-file-input btn" tabindex="0" data-file-input>
+            <span>{% trans 'Choose files...' %}</span>
+            {{ widget.file_input_html }}
+        </div>
+
+        <div class="fs-uploads" data-uploads></div>
+
+        <div style="display: none;" data-templates>
+            {% include widget.file_upload_template_name %}
+            {% include widget.file_template_name with form=uploader.formset.empty_form %}
+        </div>
+
+        <div data-meta="{{ uploader.meta_json }}" style="display: none;"></div>
+
+        {{ uploader.formset.management_form }}
+    </div>
+
+{% comment %}{% else %}{% endcomment %}
+    {% comment %} Single uploader {% endcomment %}
+
+    <!--div class="upload-widget upload-widget-single {{ widget.css_class }}"
+        data-upload-widget="{{ widget.meta.initializer }}">
+
+        <div class="thumbnail {% if not file %}empty{% endif %}">
+            <div class="inner">
+                <div class="overlay"></div>
+                <div class="preview" {% if file %}style="background-image: url('{{ thumbnail_url }}');"{% endif %}></div>
+            </div>
+        </div>
+
+        <div class="upload-controls">
+            <div class="fileinput-button btn" tabindex="0">
+                <span>{% trans 'Browse...' %}</span>
+                <input type="file">
+            </div>
+            <div class="filename"></div>
+        </div>
+
+        <div data-meta="{{ uploader.meta_json }}" style="display: none;"></div>
+
+        {{ uploader.formset.management_form }}
+    </div-->
+
+{% comment %}{% endif %}{% endcomment %}

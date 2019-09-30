@@ -1,0 +1,20 @@
+
+<ul id="catalog">
+    {% for cat in cats %}
+        <li>
+            <a href="{{ cat.url }}" title="" style="background: url({{ cat.icon.url }});">{{ cat.title }}</a>
+            <ul>
+            {% for cat2 in cat.childs.all %}
+                <li>
+                    <a href="{{ cat2.url }}" title="">{{ cat2.title }}</a>
+                    <ul>
+                        {% for cat3  in cat2.childs.all %}
+                            <li><a href="{{ cat3.url }}" title="">{{ cat3.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>

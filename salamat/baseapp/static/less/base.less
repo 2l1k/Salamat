@@ -1,0 +1,146 @@
+
+html {
+    overflow-y: scroll;
+    background: #fff;
+}
+
+
+html,
+body {
+    /*height: 100%;*/
+    position: relative;
+    /*min-width: 1000px;*/
+}
+
+
+h1 { font-size: 24px; }
+h2 { font-size: 18px; }
+h3 { font-size: 16px; }
+h4 { font-size: 14px; }
+h5 { font-size: 12px; }
+h6 { font-size: 12px; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+
+h1 small { font-size: 24px; }
+h2 small { font-size: 18px; }
+h3 small { font-size: 14px; }
+h4 small { font-size: 14px; }
+
+a {
+    &:focus {
+        outline: none;
+    }
+}
+
+
+body {
+   background: #000;
+}
+
+
+img {
+    cursor: default !important; // Hack for Redactor.js content.
+
+    a & {
+        cursor: pointer !important;
+    }
+
+    a:hover & {
+        &.img-polaroid {
+            border-color: @hColor;
+        }
+    }
+}
+
+html, body {
+    height: 100%;
+}
+
+.container {
+    width: 1170px;
+}
+.navbar-fixed-top {
+    .navbar-inner{
+        min-width: 1170px;
+        .container {
+            width: 1170px;
+        }
+    }
+    
+}
+@footerHeight: 85px;
+
+#wrap {
+    min-height: 100%;
+    min-width: 1024px;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -@footerHeight;  /* Negative indent footer by it's height */
+}
+
+#push {
+    height: @footerHeight;
+}
+
+#footer {
+    background-color: #f5f5f5;
+    height: 65px;
+    padding: 10px 0;
+    font-size: 12px;
+    .muted {
+        font-size: 10px;
+        margin-top: 15px;
+    }
+}
+
+#wrap > .container {
+    padding-top: 85px;
+}
+
+
+.navbar .brand i{
+    display: block;
+    width: 145px;
+    height: 50px;
+    background: url('../img/brand.png?v=3') 0 0 no-repeat transparent;
+    &:hover{
+        opacity: 0.8
+    }
+}
+
+.navbar .nav > li > a {
+    line-height: 50px;
+    text-transform: uppercase;
+}
+
+.page-header {
+    padding-bottom: 0;
+    margin: 0 0 10px;
+    border: none;
+    text-transform: uppercase;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+@media (max-width: 1170px) {
+    .navbar-fixed-top {
+        position: absolute;
+    }
+}
+
+.press-list li, .car-list li, .model-list li {
+    width: 370px;
+}
+
+.car-list li {
+    overflow: hidden;
+    height: 260px;
+}

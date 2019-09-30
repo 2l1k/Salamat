@@ -1,0 +1,34 @@
+{% load i18n %}
+
+{% comment %} Multiple uploader {% endcomment %}
+
+<div class="fs-widget fs-widget-multiple {{ widget.css_class }}"
+    data-uploader="{{ widget.meta.initializer }}">
+
+    <h2>Добавьте фото</h2>
+    <p class="muted">Вы можете загрузить до 10 фотографий не более 5 МБ каждая.</p>
+
+    <div class="fs-files" data-files>
+        {% for form in uploader.formset %}
+            {% include widget.file_template_name %}
+        {% endfor %}
+    </div>
+
+    <div class="fs-alerts" data-alerts></div>
+
+    <div class="fs-file-input btn btn-default" tabindex="0" data-file-input>
+        <span>{% trans 'Выбрать фото...' %}</span>
+        {{ widget.file_input_html }}
+    </div>
+
+    <div class="fs-uploads" data-uploads></div>
+
+    <div style="display: none;" data-templates>
+        {% include widget.file_upload_template_name %}
+        {% include widget.file_template_name with form=uploader.formset.empty_form %}
+    </div>
+
+    <div data-meta="{{ uploader.meta_json }}" style="display: none;"></div>
+
+    {{ uploader.formset.management_form }}
+</div>

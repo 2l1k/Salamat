@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load catalog_tags %}
+
+{% block title %}Salamat: {{ object.path }}{% endblock %}
+{% block meta_keywords %}{{ object.tags }}{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="" title="">Каталог товаров</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page">
+            <div class="container">
+                <div class="tabs-content">
+                    <div class="title title-2">
+                        <h2 class="grey m-t-3 m-b-2 text-xs-center"><span>Каталог товаров</span></h2>
+                    </div>
+                    <div class="row m-t-3 m-b-2">
+{#                        <div class="col-md-3">#}
+{#                            <select class="categories-btn">#}
+{#                                <option hidden>Категории</option>#}
+{#                                <option value="">Стройматериалы</option>#}
+{#                            </select>#}
+{#                        </div>#}
+{#                        <div class="col-md-3">#}
+{#                            <select class="categories-btn">#}
+{#                                <option hidden>Бренды</option>#}
+{#                                <option value="">Стройматериалы</option>#}
+{#                            </select>#}
+{#                        </div>#}
+{#                        <div class="col-md-3">#}
+{#                            <select class="categories-btn">#}
+{#                                <option value="">От дорогих к бюджетным</option>#}
+{#                                <option value="">От бюджетных к дорогим</option>#}
+{#                            </select>#}
+{#                        </div>#}
+{#                        <div class="col-md-3">#}
+{#                            <select class="categories-btn">#}
+{#                                <option value="">По названию</option>#}
+{#                                <option value="">По популярности</option>#}
+{#                            </select>#}
+{#                        </div>#}
+                    </div>
+                    <div class="products">
+                        <div class="row">
+                            {% for product in products %}
+                                <div class="col-md-3">
+                                    <a href="{{ product.url }}" title="" class="product">
+                                        <div class="image" style="background: #fff url({% if product.image %}{{ product.image.file.url }}{% else %}{{ STATIC_URL }}img/default_product_image.png{% endif %});"></div>
+                                        <div class="caption">
+                                            <h4>{{ product.title }}</h4>
+                                            <span class="red">{% if  product.total %}{{ product.total|money_format}}тг.{%endif%}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% empty %}
+                                <br><br>
+                                <p>Товары не найдены</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		{{ block.super }}
+    </section>
+{% endblock content %}

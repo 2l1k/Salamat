@@ -1,0 +1,38 @@
+{% extends "base_clean.html" %}
+{% load i18n %}
+
+{% block page_title %}{% trans "Signin" %}{% endblock %}
+{% block page_header %}{% trans "Signin" %}{% endblock %}
+{% block body_class %}auth-signin{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+    {% if is_account_form %}
+        <div class="span4 side">
+            {% include "registration/includes/signup_welcome.html" %}
+        </div>
+    {% else %}
+        <div class="span4 side">
+            <a class="btn btn-facebook btn-large"
+                href="{% url 'socialauth_begin' 'facebook' %}?{{ redirect_querystring }}"
+                rel="nofollow">{% trans "Signin with <strong>Facebook</strong>" %}</a>
+
+            <a class="btn btn-vk btn-large"
+                href="{% url 'socialauth_begin' 'vk-oauth' %}?{{ redirect_querystring }}"
+                rel="nofollow">{% trans "Signin with <strong>Vkontakte</strong>" %}</a>
+        </div>
+    {% endif %}
+    <div class="span6">
+        {% if not is_account_form %}
+            <p style="margin: 10px 0 20px;">{% trans "...or signin with your Salamat account credentials:" %}</p>
+        {% endif %}
+
+        {% include "registration/includes/signin_form.html" with signin_form=form %}
+
+        {% if not is_account_form %}
+            {% include "registration/includes/signup_welcome.html" %}
+            <br><br>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

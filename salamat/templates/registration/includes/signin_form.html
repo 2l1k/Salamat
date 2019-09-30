@@ -1,0 +1,11 @@
+{% load i18n %}
+<form class="{{ signin_form.helper.form_class }}" action="{% url 'userena_signin' %}?account" method="post">
+    {{ signin_form }}
+    <input type="hidden" name="{{ REDIRECT_FIELD_NAME }}" value="{{ REDIRECT_FIELD_VALUE|default:'' }}">
+    <div class="control-group">
+        <div class="controls">
+            <input class="btn btn-primary" type="submit" value="{% trans 'Signin' %}">
+            &nbsp;&nbsp;<a rel="nofollow" href="{% url 'userena_password_reset' %}" >{% trans "Forgot your password?" %}</a>
+        </div>
+    </div>
+</form>

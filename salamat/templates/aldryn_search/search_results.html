@@ -1,0 +1,23 @@
+{% extends "aldryn_search/base.html" %}
+{% load i18n standard_form %}
+{% block body_class %}page searc white{% endblock %}
+{% block content_search %}
+    <div class="block search">
+        <div class="pull-xs-none col-xs-8">
+            <form action="." method="get">
+                {% standard_widget form.q options type='search' %}
+                <button class="searching"></button>
+                <button type="button" class="clearing"></button>
+            </form>
+            <p class="find">Найдено {{page_obj.paginator.count}} результатов</p>
+        </div>
+        <div id="all-results">
+            <div class="pull-xs-none col-xs-8">
+                {% include "aldryn_search/includes/search_items.html" %}
+            </div>
+            <div class="pull-xs-none col-xs-8">
+                {% include "aldryn_search/includes/pagination.html" with obj_string=_('results') %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

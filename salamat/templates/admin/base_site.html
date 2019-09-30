@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% load i18n assets %}
+
+{% block title %}{{ title }} | {% trans 'Site administration' %}{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+{% assets "admin_css" %}
+    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+{% endassets %}
+{% endblock %}
+
+{% block extrahead %}
+{% assets "lib_js" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
+{% include "includes/boot_js.html" %}
+{{ block.super }}
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">salamat</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

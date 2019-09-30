@@ -1,0 +1,4 @@
+User-agent: *
+
+Host: http://tc-salamat.kz/
+Sitemap: http://tc-salamat.kz/sitemap.xml

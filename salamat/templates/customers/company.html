@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load catalog_tags crispy_forms_tags baseapp_tags %}
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="" title="">{{ object.company_name }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page">
+            <div class="container">
+                <div class="cart-caption">
+                    <div class="row">
+                        <div class="col-md-3 text-xs-center">
+                            <div class="title title-1">
+                                <h1 class="h2 m-b-2"><span>{{ object.company_name }}</span></h1>
+                            </div>
+
+                            <img src="{% if object.mugshot %}{{ object.mugshot.url }}{% else %}{{ STATIC_URL }}img/default_company.jpg{% endif %}" alt="" />
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="red">О компании</h4>
+                            <p class="light grey">{{ object.company_desc}}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="grey show">
+                                Показать
+                                <input type="checkbox" name="show_phone" /><span></span>
+                            </label>
+
+                            <a href="https://wa.me/{{ object.whatsapp }}" title=""  class="whatsapp grey">Whatsapp</a>
+                            <p class="red m-y-2 show_phone" data-customer="{{ object.id }}" data-value="{{ object.phone }}">+77**********</p>
+                            <a href="{{ object.map_url }}" title="" class="btn mw"><span>Найти бутик</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs-content">
+                    <div class="title title-2">
+                        <h2 class="grey m-t-3 m-b-2 text-xs-center"><span>Товары и услуги</span></h2>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <select class="categories-btn filter_select">
+                                <option hidden>Категории</option>
+                                {% for cat in categories %}
+                                    <option {% if cat.id == category.id %}selected{% endif %} value="{{cat.id}}">{{ cat.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br><br>
+{#                        <div class="col-md-8 text-xs-center">#}
+{#                            <ul class="tabs">#}
+{#                                <li>#}
+{#                                    <a href="#tab-1" title="" class="active">Товары</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#tab-2" title="" class="">Услуги</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </div>#}
+                    </div>
+
+                    <div class="tab active" id="tab-1">
+                        <div class="row">
+                            {% for product in products %}
+                                <div class="col-md-3">
+                                    <a href="{{ product.url }}" title="" class="product">
+                                        <div class="image" style="background: #fff url({% if product.image %}{{ product.image.file.url }}{% else %}{{ STATIC_URL }}img/default_product_image.png{% endif %});"></div>
+                                        <div class="caption">
+                                            <h4>{{ product.title }}</h4>
+                                            <span class="red">{% if  product.total %}{{ product.total|money_format}} тг.{% else %}Уточнить стоимость{%endif%}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="tab" id="tab-2">
+                        <div class="row">
+                            <!--div class="col-md-6">
+                                <a href="" title="" class="service">
+                                    <div class="col-xs-6 image" style="background: #fff url(img/demo-product.png);"></div>
+                                    <div class="col-xs-6 caption">
+                                        <h4>Регулятор смесителя</h4>
+                                        <span class="red">20 000 т</span>
+                                    </div>
+                                </a>
+                            </div-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="reviews">
+            <div class="container">
+                <div class="title title-1">
+                    <h2 class="grey m-y-3 text-xs-center"><span>Отзывы о магазине</span></h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 pull-xs-none">
+                        <div class="form-review">
+                            <!--<div class="title btn mw"><span>Оставить отзыв</span></div>-->
+                           <form action="{{ object.review_create_url }}" method="post"> {% csrf_token %}
+                                <div class="form">
+                                    {% crispy form %}
+                                    <button class="btn mw" ><span style="background: url('/static/img/icon-mail.png') right center no-repeat; display: inline-block;height: 100%; padding-right: 30px;">Оставить отзыв</span></button>
+                                </div>
+                           </form>
+                        </div>
+                        <div class="list-reviews">
+                            {% for review in reviews %}
+                            <div class="review">
+                                <div class="name">{{ review.title }}</div>
+                                <div class="rating">
+                                    <div class="stars">
+                                        {% for r in review.rating_range %}
+                                            <span class="active"></span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="date">{{ review.date_added|date:'d.m.Y' }}</div>
+                                <div class="description">{{ review.message|safe }}</div>
+                            </div>
+                            {% endfor %}
+
+                            <!--a href="" title="" class="more">Еще</a-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="module news stores text-xs-center">
+            <div class="container">
+                <div class="title title-2">
+                    <h2 class="h1 m-b-2 grey"><span>Похожие магазины</span></h2>
+                </div>
+                <div class="carousel-2">
+                    {% for shop in similar_shops %}
+                    <div class="item">
+                        <a href="{{ shop.url }}" title="" style="background: url({% if shop.mugshot %}{{ shop.mugshot.url }}{% else %}{{ STATIC_URL }}img/default_company.jpg{% endif %});">
+                            <div class="caption">
+                                <div class="middle">
+                                    <img src="{% if shop.mugshot %}{{ shop.mugshot.url }}{% else %}{{ STATIC_URL }}img/default_company_logo.png{% endif %}" alt="" />
+                                    <h4 class="black">{{ shop.company_name }}</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,13 @@
+<div class="caption">
+    <div class="title">Видео</div>
+</div>
+<div class="slider-2">
+    {% for object in objects %}
+    <div>
+        <a class="youtube" href="{{ object.link}}" title="">
+            <img src="{{ object.image.url }}" alt="{{ object.title}}" />
+        </a>
+    </div>
+    {% endfor %}
+
+</div>

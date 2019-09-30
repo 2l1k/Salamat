@@ -1,0 +1,47 @@
+
+<div class="fs-file {% if form.errors %}with-errors{% endif %}" data-template="file">
+    {% if form.non_field_errors %}
+        <div class="errors form-errors">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    {# Include hidden fields #}
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+    {# Include visible fields #}
+    {% for field in form.visible_fields %}
+        {% if field.errors %}
+            <div class="errors field-errors">
+                {{ field.errors }}
+            </div>
+        {% endif %}
+
+        {% if field.name == uploader.file_field_name %}
+            <div class="preview">
+                {% with form.file_meta as file %}
+                    <a class="{{ widget.thumbnail_css_class }}"
+                            href="{{ file.url|default:'#' }}"
+                            target="_blank"
+                            title="{{ file.name|default:'' }}" {{ widget.thumbnail_attrs}}>
+
+                        {% if file.thumbnail_url %}
+                            <img src="{{ file.thumbnail_url }}" alt="" />
+                        {% endif %}
+                    </a>
+                {% endwith %}
+            </div>
+        {% else %}
+            <div class="control-group">
+                <label for="id_{{ field.html_name }}" class="control-label">
+                    {{ field.label }}
+                </label>
+                <div class="controls">
+                    {{ field }}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

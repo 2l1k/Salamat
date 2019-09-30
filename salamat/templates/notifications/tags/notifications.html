@@ -1,0 +1,13 @@
+
+
+<div class="form">
+    <div class="slider">
+        {% for object in objects %}
+        <div>
+            <h3 class="red black">{{ object.title }}</h3>
+            <p>{{ object.description|safe }}</p>
+        <a href="{{ object.link }}" class="btn mw"><span>Подробнее</span></a>
+        </div>
+        {% endfor %}
+    </div>
+</div>

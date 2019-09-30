@@ -1,0 +1,58 @@
+{% extends "base_clean.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="" title="">Авторизация</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page login-page">
+            <div class="container">
+                <div class="title title-1">
+                    <h1 class="grey m-t-1 m-b-3 text-xs-center"><span>Авторизация</span></h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pull-xs-none">
+                        <div class="cart-caption login-caption m-b-3 p-b-3 col-xs-12 text-xs-center grey">
+                            <form method="post">
+                                {% crispy form %}
+{#                                <input type="text" name="identification" placeholder="E-mail" />#}
+{#                                <input type="password" name="password" placeholder="Пароль" />#}
+                                <div class="row">
+                                    <div class="col-md-6 text-md-left">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="remember_me" value="" hidden />
+                                            <span></span>
+                                            Запомнить
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 text-md-right">
+                                        <a href="{% url 'userena_password_reset' %}" title="" class="grey">Забыли пароль?</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 text-md-left">
+                                        <button class="btn mw login"><span>Войти</span></button>
+                                    </div>
+                                    <div class="col-md-6 text-md-right">
+                                        <button name="cancel" class="btn mw cancel"><span>Отмена</span></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <a href="{% url 'userena_signup' %}" title="" class="grey" style="text-decoration: underline;">Еще не регистрировались?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

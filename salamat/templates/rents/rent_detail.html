@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'rent_list' %}" title="">Арендаторам</a>
+                    </li>
+                    <li>
+                        <a href="" title="">Помещение в аренду {{ object.area }} м<sup>2</sup></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page arend-page">
+				<div class="container">
+					<div class="cart d-flex">
+						<div class="col-md-8" style="background-image: url({{ object.image.url }});">
+							<div>
+								<div class="desc">
+									<h2>{{ object.get_building_display }}</h2>
+									<p>Сдаются в аренду помещения.</p>
+								</div>
+								<div class="square">
+									<p>Торговая площадь</p>
+									<h2>{{ object.area }} кв.м</h2>
+								</div>
+								<div class="price">
+									<p>Цена за месяц </p>
+									<h2>{% load humanize %}{{ object.price | intcomma }} <strike>Т</strike></h2>
+								</div>
+							</div>
+							<div class="phone">
+								<a href="tel:+7 (700) 451 51 80">+7 (700) 451 51 80</a>
+							</div>
+						</div>
+						<div class="col-md-4">
+                            <h2>Заявка на аренду</h2>
+							<p>Оставьте свой номер телефона или email,
+								мы свяжемся с вами в течение <span>30 минут</span></p>
+                            <div class="form">
+                                <form class="m-t-2" action="{% url 'feedback' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="redirect_url" value="{{ request.path }}?tab=2">
+                                    <input type="hidden" name="subject" value="{{ object.get_category_display}}, {{ object.area }} кв.м , {{ object.get_building_display }}" />
+                                    <input type="text" name="name" placeholder="Ваше имя" />
+                                    <input type="text" name="phone" placeholder="Номер телефона" />
+                                    <button class="btn m-t-1 m-x-auto mw open-form"><span>Подать заявку</span></button>
+                                </form>
+                            </div>
+						</div>
+                    </div>
+                    <div class="article-description grey">
+                        {% if object.images %}
+                            <div class="carousel-1">
+                                {% for image in object.images %}
+                                    <div class="col-md-4">
+                                        <img src="{{image.url}}" alt="">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {{ object.description|safe }}
+                    </div>
+                </div>
+            </div>
+        </section>
+<!--        <div class="page article-page">-->
+<!--            <div class="container">-->
+<!--                <div class="image">-->
+<!--&lt;!&ndash;                    <img src="{{ object.image.url }}" alt="" class="shadow" />&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="title title-3">-->
+<!--&lt;!&ndash;                    <h1 class="grey m-t-3 m-b-2 text-xs-center"><span>{{ object.title }}</span></h1>&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="article-description grey">-->
+<!--&lt;!&ndash;                    {{ object.description|safe }}&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+{% endblock %}

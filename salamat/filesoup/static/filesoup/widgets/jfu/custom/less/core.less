@@ -1,0 +1,159 @@
+
+display: block;
+margin: 10px 0;
+.clearfix();
+
+.btn {
+    font-size: inherit;
+}
+
+.thumbnail {
+    background-color: #fff;
+    outline: none;
+}
+
+.fs-file-input {
+    position: relative;
+    overflow: hidden;
+    float: left;
+
+    input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        transform: translate(-300px, 0) scale(4);
+        font-size: 23px;
+        direction: ltr;
+        cursor: pointer;
+        .opacity(0);
+    }
+
+    * html & {
+        /* Fix for IE 6: */
+        line-height: 24px;
+        margin: 1px -3px 0 0;
+    }
+
+    * + html & {
+        /* Fix for IE 7: */
+        padding: 2px 15px;
+        margin: 1px 0 0 0;
+    }
+}
+
+.fs-upload, .fs-file-info {
+    overflow: hidden;
+
+    .error, .progress, .size, .name {
+        float: left;
+        line-height: 20px;
+        margin-right: 10px;
+    }
+
+    .size {
+        color: #999;
+        font-size: 11px;
+        font-weight: bold;
+        line-height: 22px;
+    }
+}
+
+.fs-uploads {
+    height: 30px;
+    overflow: hidden;
+    padding: 0 0 0 10px;
+
+    .fs-upload {
+        height: 20px;
+        padding: 5px 0;
+        position: relative;
+
+        .progress {
+            height: 10px;
+            margin: 6px 10px 0 0;
+            width: 110px;
+            .border-radius(2px);
+        }
+
+        .name {
+            max-width: 40%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+}
+
+.fs-files {
+    .clearfix();
+
+    .fs-file {
+        float: left;
+        margin: 0 10px 10px 0;
+
+        .preview {
+            a {
+                background-position: center center;
+                background-repeat: no-repeat;
+                display: block;
+                overflow: hidden;
+                position: relative;
+                .square(80px);
+
+                img {
+                    background: transparent;
+                    max-height: 100%;
+
+                    .js & {
+                        // Prevent img flickering because of thumbnail
+                        // size adjustment. Plugin will fade it in.
+                        display: none;
+                    }
+                }
+
+                &.loading {
+                    background-image: url("../img/loading.gif");
+                }
+            }
+        }
+
+        &.with-errors {
+            clear: both;
+            float: none;
+            margin: 10px -5px;
+            padding: 5px;
+
+            .errors {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+
+.fileinput-button {
+    margin: 0;
+    min-width: 64px;
+}
+
+.alert {
+    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 5px 35px 5px 14px;
+    position: relative;
+    .box-sizing(border-box);
+
+    .close {
+        display: block;
+        float: none;
+        position: absolute;
+        right: 8px;
+        top: 2px;
+    }
+
+    .fs-file-info {
+        .error {
+            float: none;
+            margin: 0;
+        }
+    }
+}

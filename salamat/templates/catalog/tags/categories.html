@@ -1,0 +1,12 @@
+<div id="categories">
+    {% for cat in cats %}
+    <label>
+        <input type="radio" name="categories" value="{{ cat.id }}" hidden />
+        <span>{{ cat.title }}</span>
+    </label>
+    {% endfor  %}
+{#    <label>#}
+{#        <input type="radio" name="categories" value="0" hidden />#}
+{#        <span>Другое</span>#}
+{#    </label>#}
+</div>

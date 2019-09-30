@@ -1,0 +1,306 @@
+<!DOCTYPE html>{% load i18n assets %}
+
+{% load cms_tags staticfiles sekizai_tags menu_tags   catalog_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{LANGUAGE_CODE}}">
+<head  >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Salamat{% endblock %}</title>
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" />
+    <meta name="description" content="{% block meta_descriprion %}{% endblock %}" />
+    <link href="{{ STATIC_URL }}img/favicon.png" rel="icon" type="image/png" />
+    {% render_block "css" %}
+    {% block css %}
+        <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ STATIC_URL }}css/magnific-popup.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ STATIC_URL }}css/slick.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ STATIC_URL }}plugins/fresco/fresco.css" rel="stylesheet" type="text/css" />
+        <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" type="text/css" />
+        <link href="{{ STATIC_URL }}css/media.css" rel="stylesheet" type="text/css" />
+        <link href="{{ STATIC_URL }}css/arend.css" rel="stylesheet" type="text/css" />
+    {% endblock css %}
+
+    <script src="{{ STATIC_URL }}js/jquery.min.js" type="text/javascript"></script>
+
+    {% include "includes/counters_js.html" %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+{% cms_toolbar %}
+ <header>
+ {% block page_messages %}{% include "includes/page_messages.html" %}{% endblock %}
+    <div class="header-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="header-contacts">
+                        <div class="item item-1 hidden-md-down">
+                            <a href="mailto:info@tc-salamat.kz" title="">{% static_placeholder "contact_email" %}</a>
+                        </div>
+                        <div class="item item-2">
+                            {% static_placeholder "work_period" %}
+
+                        </div>
+                        <div class="item item-3">
+                            <a href="/contacts/" title="">Как проехать </a>
+                        </div>
+                        <div class="item item-4">
+                            <a target='_blank' href="https://www.facebook.com/Центр-строительных-материалов-Саламат-350826818984010" title="" class="fb"></a>
+                            <!--<a href="https://vk.com" title="" class="vk"></a>-->
+                            <a target='_blank' href="https://instagram.com/tc_salamat_almaty?igshid=1oo2422ru0j1x" title="" class="in"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="header-account">
+                        {% if user.is_authenticated %}
+                            <div class="item item-2"><a href="{% url 'userena_signout' %}" title="">Выйти</a></div>
+                            <div class="item item-1"><a href="{% url 'me' %}" title="">{{ user.profile.username }}</a></div>
+                        {% else %}
+                            <div class="item item-2">
+                                <a href="{% url 'userena_signin' %}" title="">Войти</a>
+                            </div>
+                            <div class="item item-1">
+                                <a href="{% url 'userena_signup' %}" title="">Регистрация</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xs-7">
+                    <a href="/" title="" class="logo">
+                        <img src="{{ STATIC_URL }}img/logo.png" alt="" />
+                    </a>
+                </div>
+                <div class="col-md-9 col-xs-5">
+                    <button class="burger"></button>
+                    <ul id="menu">
+                        <li>
+                            <a href="/about/" title="">О нас</a>
+                        </li>
+                        <li>
+                            <a href="/plan/" title="">План зданий Саламат</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'rent_list' %}" title="">Арендаторам</a>
+                        </li>
+                        <li><a href="{% url 'news_list' %}" title="">Полезные статьи</a></li>
+                        <!--<li><a href="http://www.tc-salamat.kz/paper" target="_blank" title="">Газета</a></li>-->
+                        <li>
+                            <a href="/contacts/" title="">Контакты</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="header-catalog">
+                        <a href="#catalog" title="" class="btn mw catalog-btn"><span>Каталог</span></a>
+                        {% get_categories %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="header-search">
+                        <form action="{% url 'product_search' %}">
+                            <input type="search" name="search" placeholder="Поиск" value="{{ search }}"/>
+                            <a href="#categories" title="" class="categories-btn">
+                                <span>{% if search_category %}{{ search_category.title }}{% else %}Категории{% endif %}</span></a>
+                            {% if search_category %}
+                                <input type="hidden" name="categories" value="{{ search_category.id }}" />{% endif %}
+                            {% get_parent_categories %}
+                            <button type="submit"></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% block content %}
+    {% block content_inner %}
+    {% endblock content_inner %}
+    <div class="module info text-xs-center white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 info-1">
+                    <h2 class="h1 m-b-3"><span>Арендаторам</span></h2>
+                    <p>{% static_placeholder "rent_text" %}</p>
+                    <a href="{% url 'rent_list' %}" title="" class="btn mw m-t-3">Подать заявку</a>
+                </div>
+                <div class="col-md-6 info-2">
+                    {% static_placeholder "top_shop_image" %}
+                    <h2 class="h1 m-b-3"><span>Магазин месяца</span></h2>
+                    <p>{% static_placeholder "top_shop_text" %}</p>
+                    {% static_placeholder "top_shop_link" %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block footer %}
+<footer>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xs-12 text-xs-center">
+                    <img src="{{ STATIC_URL }}img/logo.png" alt="" />
+                    <a href="#catalog" title="" class="btn mw catalog-btn m-t-3"><span>Каталог</span></a>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <h4>О нас</h4>
+                    <ul>
+                        <li>
+                            <a href="{% url 'news_list' %}" title="">Полезные статьи</a>
+                        </li>
+                        <!--<li>-->
+                            <!--<a href="http://www.tc-salamat.kz/paper" target="_blank" title="">Газета Саламат</a>-->
+                        <!--</li>-->
+                        <li>
+                            <a href="/plan/" title="">Карта Саламат</a>
+                        </li>
+                    </ul>
+                    <h4>Социальные сети</h4>
+                    <a target="_blank" href="https://www.facebook.com/Центр-строительных-материалов-Саламат-350826818984010" title="" class="social-icon fb"></a>
+                    <!--<a href="" title="" class="social-icon vk"></a>-->
+                    <a href=" https://instagram.com/tc_salamat_almaty?igshid=1oo2422ru0j1x" title="" target="_blank" class="social-icon in"></a>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <h4>Контакты</h4>
+                    {% static_placeholder "contacts" %}
+
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <h4>Вопрос к администрации</h4>
+                    <form action="{% url 'feedback' %}" method="post">{% csrf_token %}
+                        <input type="text" name="name" value="" placeholder="Имя" />
+                        <input type="text" name="phone" value="" placeholder="Номер телефона" />
+                        <textarea rows="" name="message" placeholder="Ваш вопрос"></textarea>
+                        <button class="btn send"><span></span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xs-4">
+                    Саламат {% now "Y" %}
+                </div>
+                <div class="col-md-9 col-xs-8 text-md-right">
+                    Разработка сайта <a href="http://puzzle.kz" title="" target="_blanc"><img src="{{ STATIC_URL }}img/puzzle.png" alt="" style="margin-left: 15px; vertical-align: sub;" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+<div class="popup">
+</div>
+{% csrf_token %}
+{% block js %}
+<!--    <script src="{{ STATIC_URL }}js/jquery.min.js" type="text/javascript"></script>-->
+	<script src="{{ STATIC_URL }}js/jquery.inputmask.bundle.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/jquery.magnific-popup.min.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/slick.min.js" type="text/javascript"></script>
+
+    <script src="{{ STATIC_URL }}js/main.js?v=2222223" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}plugins/fresco/fresco.js" type="text/javascript"></script>
+{% endblock js %}
+{% render_block "js" %}
+
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'Sdhbt7URGS';var d=document;var w=window;function l(){var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>
+<!-- {/literal} END JIVOSITE CODE -->
+
+<script>
+$(document).ready(function () {
+     // Added last change
+     $(".slider-arend").slick({
+        dots: false,
+        arrows: true,
+        infinite: true
+    });
+    $(".select .area-btn").click(function(e) {
+        e.preventDefault();
+        $(this).toggleClass("active");
+        $($(this).attr('href')).slideToggle();
+    });
+    $("#area1 label").click(function() {
+        var name = $(this).find("span").html();
+        $(".area-btn span").html(name);
+    });
+    $(document).click(function(e) {
+        if ($(e.target).closest(".area-btn").length) return;
+        $("#area1").slideUp();
+        e.stopPropagation();
+        $("[href='#area1']").removeClass("active");
+    });
+    $(".carousel-arend").slick({
+        dots: false,
+        arrows: true,
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1080,
+                settings: {
+                    slidesToShow: 3
+                }
+            }
+        ]
+    });
+    $(".slide-market").slick({
+        dots: false,
+        arrows: true,
+        infinite: true,
+        // centerMode: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1080,
+                settings: {
+                    slidesToShow: 3
+                }
+            }
+        ]
+    });
+
+    $(".carousel-1").slick({
+        dots: false,
+        arrows: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1080,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+});
+</script>
+<style>
+    .header-3 {
+        background: linear-gradient(to right, #fff 50%, #e8e8e8 50%) !important;
+    }
+</style>
+</body>
+</html>

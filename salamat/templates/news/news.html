@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+    <section>
+        <div class="breadcrumbs news-page">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="" title="">Полезные статьи</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page p-b-3 news-page">
+            <div class="container">
+                <div class="title title-1">
+                    <h2 class="m-b-3 grey text-xs-center"><span>Полезные статьи</span></h2>
+                </div>
+                {% for n in object_list %}
+                    <div class="news-item m-b-1 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-8 p-a-3 post-description">
+                                <div class="title title-1">
+                                    <h2 class="m-b-2 grey"><span>{{ n.title }}</span></h2>
+                                </div>
+                                <p class="grey">{{ n.brief }}</p>
+                                <p><a href="{{ n.url }}" title="" class="h4 black grey">Читать</a>{% comment %}<span class="h4 pull-md-right grey">{{ news.date_updated|date:'dd.mm.YY' }}</span>{% endcomment %}</p>
+                            </div>
+                            <div class="col-md-4 post-image" style="background: url({{ n.image.url }});"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

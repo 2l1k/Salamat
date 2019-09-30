@@ -1,0 +1,404 @@
+{% extends "base.html" %}
+{% load catalog_tags crispy_forms_tags %}
+{% block js %}
+    {{ block.super }}
+    {{ form.media.js }}
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    {{ form.media.css }}
+{% endblock %}
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'me'  %}" title="">Личный кабинет</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page cabinet">
+            <div class="container">
+                <div class="title title-2">
+                    <h1 class="h2 grey m-t-3 m-b-2 text-xs-center"><span>Личный кабинет</span></h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 pull-xs-none text-xs-center">
+                        <ul class="tabs">
+                            <li>
+                                <a href="{% url 'me' %}?tab=1" title="" class=""
+                                onclick="window.location.href='{% url 'me' %}?tab=1'">Настройка профиля</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'me' %}?tab=2" title="" class=""
+                                onclick="window.location.href='{% url 'me' %}?tab=2'">История открытий номеров</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'me' %}?tab=3" title="" class="active"
+                                onclick="window.location.href='{% url 'me' %}?tab=3'">Товары и услуги</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab active" id="tab-1">
+                    <div class="title title-1">
+                        <h3 class="grey m-b-2"><span>Редактировать товар/услугу</span></h3>
+                    </div>
+                    <!--<div class="controls">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-4">-->
+                                <!--<button class="btn add"><span>Скопировать товар/услугу</span></button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="row">
+                        <div class="col-xs-12 text-xs-center">
+                            <ul class="tabs-2">
+                                <li>
+                                    <a href="{{ product.url_update }}" title="" class="{% if tab == '1' %}active{% endif %}"
+                                       onclick="window.location.href='{{ product.url_update }}'">Основная информация</a>
+                                </li>
+                                <li>
+                                    <a href="{{ product.get_characteristic_create_url }}" title="" class="{% if tab == '2' %}active{% endif %}"
+                                       onclick="window.location.href='{{ product.get_characteristic_create_url }}'">Характеристики</a>
+                                </li>
+                                <li>
+                                    <a href="#tab-2-3" title="" class="{% if tab == '3' %}active{% endif %}">SEO</a>
+                                </li>
+                                <li>
+                                    <a href="#tab-2-4" title="" class="{% if tab == '4' %}active{% endif %}">Скидки, сопутствующие и товары в подарок</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="tab-2 {% if tab == '1' %}active{% endif %}" id="tab-2-1">
+                         {% if tab == '1' %}{% crispy form %} {% endif %}
+                     </div>
+                    <div class="tab-2 {% if tab == '2' %}active{% endif %}" id="tab-2-2">
+                        <div class="form product-specifications">
+                            {% if tab == '2' %} {% crispy form %} {% endif %}
+
+                            <div class="row">
+                                <div class="col-md-8 pull-xs-none">
+                                    <ul class="specifications">
+                                         {% for char in product.productcharacteristic_set.published %}
+                                        <li>{{ char.title }}<span>{{ char.characteristic_desc }}</span><a href="{{ char.url_delete }}" class="remove"></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-2 {% if tab == '3' %}active{% endif %}" id="tab-2-3" >
+                        <div class="form product-seo">
+                            <form method="post" action="{{ product.url_seo_update }}">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-4 pull-xs-right">
+                                        <p>Пример: Условия гарантии  на монтажные работы  СКС «Brand Rex».</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea rows="6" name="seo_title" placeholder="HTML заголовок">{{ product.seo_title }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 pull-xs-right">
+                                        <p>Пример HTML описания:  Информация о условиях  гарантии компании</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea rows="6" name="seo_description" placeholder="HTML описание">{{ product.seo_description }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 pull-xs-right">
+                                        <p>Пример ключевых слов:  Гарантия, ООО «Сеть»,  СКС, «Brand Rex»,</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea rows="6" name="seo_keywords" placeholder="HTML ключевые слова">{{ product.seo_keywords }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button class="btn publication"><span>Опубликовать товар/услугу</span></button>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="tab" value="3" />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-2 {% if tab == '4' %}active{% endif %}" id="tab-2-4">
+                        <div class="form product-discount text-xs-center">
+                            <div class="row">
+                                <div class="col-md-4 discount">
+                                    <h4>Скидка</h4>
+                                    <a href="#discount" title="" popup>
+                                        <h2>{% if product.discount %}{{ product.discount }} {{ product.get_discount_percent_display }}{% else %}0{% endif %}</h2>
+                                        Добавить
+                                    </a>
+                                    <p>Вы можете указать сумму или процент скидки. Скидка будет отображать в указанный вами период на странице товара и в списке товаров, если:</p>
+                                    <p>товар актуальный;<br/>в наличие или под заказ;<br/>имеет цену.</p>
+                                </div>
+                            {% comment %}
+                                <div class="col-md-4 discount">
+                                    <h4>Товары в подарок</h4>
+                                    <a href="#present" title="" popup>
+                                        <h2>0</h2>
+                                        Добавить
+                                    </a>
+                                    <p>Вы можете указать сумму или процент скидки. Скидка будет отображать в указанный вами период на странице товара и в списке товаров, если:</p>
+                                    <p>товар актуальный;<br/>в наличие или под заказ;<br/>имеет цену.</p>
+                                </div>
+                                <div class="col-md-4 discount">
+                                    <h4>Сопутствующие товары</h4>
+                                    <a href="#related" title="" popup>
+                                        <h2>0</h2>
+                                        Добавить
+                                    </a>
+                                    <p>Вы можете указать сумму или процент скидки. Скидка будет отображать в указанный вами период на странице товара и в списке товаров, если:</p>
+                                    <p>товар актуальный;<br/>в наличие или под заказ;<br/>имеет цену.</p>
+                                </div>
+                            {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="popup">
+        <div id="discount" class="win shadow">
+            <form method="post" action="{{ product.url_discount_update }}">{% csrf_token %}
+                <input type="hidden" name="tab" value="4" />
+                <h4 class="red black">Настройки скидки на товар</h4>
+                <div class="row grey">
+                    <div class="col-md-4">Текущая цена</div>
+                    <div class="col-md-8"><span id="old_price">{% if similar.price %}{{ similar.price|money_format}} </span> тг.{% else %}Уточнить стоимость</span>{%endif%}</div>
+                </div>
+                <div class="row grey">
+                    <div class="col-md-4">
+                        <p>Скидка <span class="red">*</span></p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="number" name="discount" value="{{ product.discount }}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <select name="discount_percent">
+                                    <option value="1" {% if product.discount_percent == 1 %}selected{% endif %}>%</option>
+                                    <option value="2" {% if product.discount_percent == 2 %}selected{% endif %}>тг</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row grey">
+                    <div class="col-md-4">&nbsp;</div>
+                    <div class="col-md-8">Задайте процент скидки или абсолютное значение</div>
+                </div>
+                <div class="row grey">
+                    <div class="col-md-4">Новая цена</div>
+                    <div class="col-md-8"><span id="new_price">{% if  product.grant_total %}{{ product.grant_total|money_format}}</span> тг.{% else %}Уточнить стоимость{%endif%}</span></div>
+                </div>
+                <div class="row grey">
+                    <div class="col-md-4">
+                        <p>Срок действия <span class="red">*</span></p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="date" name="discount_start_date" value="{{ product.discount_start_date|date:'Y-m-d' }}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="date" name="discount_end_date" value="{{ product.discount_end_date|date:'Y-m-d' }}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row grey">
+                    <div class="col-md-4">&nbsp;</div>
+                    <div class="col-md-8">Задайте срок действия акции, не более 45 дней</div>
+                </div>
+                <div class="row m-y-2 text-xs-center">
+                    <div class="col-md-6"><button class="btn mw save"><span>Сохранить</span></button></div>
+                    <div class="col-md-6"><button class="btn mw delete"><span>Удалить</span></button></div>
+                </div>
+                <div class="row red">
+                    <button class="copy_discount">Скопировать скидку для всех товаров в группе</button><br/>
+                    <button class="delete_discount">Удалить скидку для всех товаров в группе</button>
+                </div>
+            </form>
+        </div>
+        <div id="present" class="win shadow">
+            <form>
+                <h4 class="red black">Товары в подарок</h4>
+                <p class="grey m-y-1">Выберите 1 из 3 на сумму 5200 тг.</p>
+                <div class="search">
+                    <input type="text" name="" />
+                    <button></button>
+					<ul class="dropdown-products">
+						<li data-value="72"><a href="#">Afro new</a></li>
+						<li data-value="54"><a href="#">Ambra</a></li>
+						<li data-value="108"><a href="#">Andrea</a></li>
+						<li data-value="120"><a href="#">Arpa 12</a></li>
+						<li data-value="70"><a href="#">Asap</a></li>
+					</ul>
+                </div>
+                <ul>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+                </ul>
+                <button class="btn mw save"><span>Сохранить</span></button>
+            </form>
+        </div>
+        <div id="related" class="win shadow">
+            <form>
+                <h4 class="red black">Сопутсвующие товары (3)</h4>
+                <div class="search">
+                    <input type="text" name="" />
+                    <button></button>
+                </div>
+                <ul>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+					<li>
+						<img src="img/demo-product.png" alt="" />
+						<div class="product_name">
+							<h5 class="red">Название крутого товара</h5>
+							<span>2200 тг.</span>
+						</div>
+						<label>
+							<input type="checkbox" name="" />
+							<span>Удалить</span>
+						</label>
+					</li>
+                </ul>
+                <button class="btn mw save"><span>Сохранить</span></button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

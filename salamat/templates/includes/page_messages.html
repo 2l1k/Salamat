@@ -1,0 +1,8 @@
+
+<div id="messages" class="hide">
+    {% for msg in messages %}
+        <div class="message {{msg.tags}}">
+            {{ msg.message }}
+        </div>
+    {% endfor %}
+</div>

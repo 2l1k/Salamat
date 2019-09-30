@@ -1,0 +1,30 @@
+{% extends "base_clean.html" %}
+{% load i18n %}
+
+{% block page_title %}{% trans "Account activation failed" %}{% endblock %}
+{% block page_header %}{% trans "Your account could not be activated..." %}{% endblock %}
+
+{% block content %}
+<section>
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                <li>
+                    <a href="/" title="">Главная</a>
+                </li>
+                <li>
+                    <a href="" title="">Регистрация</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="page login-page">
+        <div class="container">
+            <p>{% trans "This could be because your activation link has aged." %}</p>
+            <p>{% trans "Please try signing up again or contact us if you think something went wrong." %}</p>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

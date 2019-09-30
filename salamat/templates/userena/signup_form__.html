@@ -1,0 +1,28 @@
+{% extends "base_clean.html" %}
+{% load i18n %}
+
+{% block page_title %}{% trans "Signup" %}{% endblock %}
+{% block page_header %}{% trans "Signup" %}{% endblock %}
+{% block body_class %}auth-signup{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+    <div class="span6">
+        <div class="inner">
+            {% if not is_account_form %}
+                <p style="margin: 10px 0 20px;">{% trans "...or sign up with your credentials:" %}</p>
+            {% endif %}
+            <form action="{% url 'userena_signup' %}?account" method="post">
+                {% csrf_token %}
+                {{ form}}
+                <div class="control-group">
+                    <div class="controls">
+                        <input class="btn btn-primary" type="submit" value="{% trans 'Create account'%}">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

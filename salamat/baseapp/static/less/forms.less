@@ -1,0 +1,125 @@
+
+form {
+    .has-alerts;
+
+    .help-inline, .help-block {
+        color: #777;
+        vertical-align: 0;
+
+        strong {
+            font-weight: normal;
+        }
+    }
+
+    .control-group {
+        margin-bottom: 20px;
+
+        .controls {
+            * {
+                margin-bottom: 0;
+            }
+
+            label {
+                margin-bottom: 5px;
+
+                &.checkbox.inline {
+                    margin-right: 10px;
+                }
+
+                &.checkbox {
+                    line-height: 1.5;
+
+                    .help-inline {
+                        margin-top: -2px;
+                    }
+                }
+            }
+
+            ul {
+                margin: 0;
+
+                li {
+                    list-style: none;
+
+                    label {
+                        padding: 2px 0 0;
+
+                        input {
+                            margin: -2px 2px 0 0;
+                        }
+                    }
+                }
+
+                &.typeahead {
+                    margin-top: 2px;
+                }
+            }
+        }
+
+        .help-block {
+            margin: 7px 0 10px;
+
+            &:first-child {
+                margin-top: 5px;
+            }
+        }
+
+        &.error {
+            .formFieldState(#555, @errorText, @errorBackground);
+
+            .control-label {
+                color: @errorText;
+            }
+
+            .help-inline, .help-block {
+                strong {
+                    .alert-error;
+                    background: transparent;
+                    padding: 2px 0;
+                    text-shadow: 0 0 2px #fff;
+                }
+            }
+        }
+    }
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    @boxShadow: inset 0 0 1px rgba(0, 0, 0, 0.17);
+
+    background-color: #f8f8f8;
+    border: 1px solid #c3c3c3;
+    .box-shadow(@boxShadow);
+    .transition(~"border linear .3s, background-color linear .3s, box-shadow linear .3s");
+
+    // Focus state
+    &:focus {
+        @borderColor: rgba(82, 168, 236, .7);
+        border-color: @borderColor;
+        background-color: #fefefe;
+        outline: 0 none;
+        outline: 0 none \9; /* IE6-9 */
+        @box-shadow: @boxShadow, 0 0 3px lighten(@borderColor, 20%);
+        .box-shadow(@box-shadow);
+    }
+}
+
+.asteriskField {
+    color: #2E8ACB;
+    margin-left: 2px;
+}

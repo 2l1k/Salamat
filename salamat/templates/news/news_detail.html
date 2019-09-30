@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'news_list' %}" title="">Полезные статьи</a>
+                    </li>
+                    <li>
+                        <a href="" title="">{{ object.title }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page article-page">
+            <div class="container">
+                <div class="image">
+                    <img src="{{ object.image.url }}" alt="" class="shadow" />
+                </div>
+                <div class="title title-3">
+                    <h1 class="grey m-t-3 m-b-2 text-xs-center"><span>{{ object.title }}</span></h1>
+                </div>
+                <div class="article-description grey">
+                    {{ object.description|safe }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

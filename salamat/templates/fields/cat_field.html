@@ -1,0 +1,9 @@
+{% load crispy_forms_field catalog_tags %}
+{#    {% crispy_field field %}#}
+{#    <input type="text" class="input_cat_btn" value="Категории" readonly />#}
+{% if form.instance|slugify%}
+    {% get_categories_field form.category.value form.instance.category.path%}
+{% else %}
+    {% get_categories_field field.value '' %}
+{% endif %}
+    {% include 'bootstrap/layout/help_text_and_errors.html' %}

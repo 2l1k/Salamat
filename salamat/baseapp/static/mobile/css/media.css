@@ -1,0 +1,155 @@
+@media screen and (max-width: 767px) {
+	.aboutus .content-1 .caption {bottom: 110px!important;}
+	#favorites .h1 {display: none;}
+	.aboutus .slick-prev {right: 90%!important;}
+	.aboutus .slick-next {left: 90%!important;}
+	.alarm-background-image .caption {margin: 0!important; padding: 0!important;}
+	#all-projects .scrolling {max-height: calc(220px * 8)!important;}
+	
+	.category .category-slick-slider-1 {margin-left: 0!important;}
+	.cat-1 .caption, .cat-2 .caption {position: relative!important; top: 0!important; margin-left: 0!important; padding: 15px!important;}
+	.category .caption h2 {margin-left: 0!important; margin-bottom: 15px!important; text-align: center;}
+	.block {overflow: hidden!important;}
+}
+@media screen and (max-width: 1024px) {
+	body, html {
+		font-size: 14px!important;
+		line-height: 15px!important;
+	}
+	h1, .h1 {
+		font-size: 28px!important;
+		line-height: 25px!important;
+	}
+	h2, .h2 {
+		font-size: 20px!important;
+		line-height: 25px!important;
+	}
+	h3, .h3 {
+		font-size: 16px!important;
+		line-height: 15px!important;
+	}
+	h4, .h4 {
+		font-size: 14px!important;
+		line-height: 15px!important;
+	}
+	
+	header {background: #fff!important;}
+	.page header * {filter: none!important;}
+	header .menu, header .logo, header .lang, header .search .open, header .search .close {filter: brightness(0)!important;}
+	header a {height: 55px!important; line-height: 55px!important;}
+	header .menu {margin-right: 0!important; background-position-x: center!important;}
+	header .logo {margin-left: 0!important; background-position-x: center!important;}
+	header .search .open {height: 55px!important;}
+	header .search.active input {border: 1px solid #000; z-index: 9;}
+	header .search .close {right: 240px!important;}
+	header .login {display: none;}
+	header .col-md-8 div {float: right!important;}
+	
+	footer .feedback, .footer .border-bottom {display: none;}
+	.totop {float: right;}
+	.copyright p {padding: 0!important;}
+	.schema {margin: 30px 0 15px;}
+	
+	#menu .logo {float: left!important; width: 50px!important; margin-top: 15px!important; margin-bottom: 15px!important; padding-bottom: 15px!important; border-bottom: 0!important;}	
+	#menu .home, #menu .x {top: calc(100% - 55px)!important; right: 105%!important; background-size: 75%!important; filter: none!important; opacity: 1!important;}	
+	#menu .home {left: 70%!important;}
+	#menu ul li {margin-bottom: 5px!important; font-size: 11px; line-height: 20px!important;}
+	#menu ul a {padding-right: 35px!important; opacity: 1!important;}
+	#menu ul li span {position: absolute; top: 0; right: 0; display: inline-block; padding: 0 15px; font-size: 18px; z-index: 9;}
+	#menu ul ul {position: relative!important; top: 0!important; max-height: 0; opacity: 0; margin-top: 0!important; padding: 0 0!important; padding-right: 35px; background: none!important; text-align: right!important; z-index: 1!important; border-bottom: 1px solid #ebebeb;}
+	#menu ul li:hover ul {left: 0!important;}
+	#menu ul li.active ul {max-height: 200px; opacity: 1;}
+	#menu ul li:nth-child(7) ul {margin-bottom: 0!important;}
+	#menu .col-xs-3:nth-child(1) {display: none;}
+	#menu .g {background-size: 100%!important;}
+	#menu .g, #menu .f, #menu .i {opacity: 1!important; filter: none;}
+	
+	.main-slider {position: relative;}
+	.main-slider .caption {background-size: cover!important; background-position-x: left!important;}
+	.main-slider .col-lg-4 {top: 0!important; margin-top: 0!important;}
+	.main-slider h3 {font-size: 12px!important; line-height: 18px!important;}
+	.main-slider .pull-xs-right, .main-slider h3 {height: 100%; right: 0;}
+	.main-slider h3 span {display: inline-block; width: 80%; vertical-align: middle;}
+	.main-slider .slide {bottom: 15px; right: 15px; text-align: right; font-size: 14px;}
+	.main-slider .slide span {width: auto; margin-bottom: 0; font-size: 14px;}
+	.main-slider:after, .product-image:after {bottom: 20px; background-size: 10px;}
+	.main-slider .controls {position: absolute; bottom: 15px; left: 15px; height: 55px; text-align: left;}
+	.main-slider .controls button {background-size: 7.5px!important;}
+	.main-slider .controls span {height: 50%; margin: -7px 5px 0;}
+	
+	.main-categories {margin-top: 0;}
+	.main-categories .col-md-6 {padding: 0;}
+	.main-categories a {background: none;}
+	.main-categories .caption {padding-top: 15px;}
+	.main-categories h2 {font-size: 12px!important; line-height: 11px!important;}
+	.main-categories .line {top: 20px; width: 55px;}
+	
+	.page .search input {background: #fff!important;}
+	.page .search .close {top: 20%!important;}
+	.aboutus .content-1 {height: 235px; padding-top: 0!important;}
+	.aboutus .content-1 img {width: auto; max-width: 500%; height: 100%;}
+	.selection a {width: 100%; padding: 10px 15px!important;}
+	.projects .tab {background: #f7f7f7!important;}
+	#favorites p {padding-top: 30px!important; padding-right: 0!important; text-align: center;}
+	.sertificates-slider img {width: 90%; margin: auto;}
+	
+	.page section {padding-top: 55px!important;}
+	.product-image {position: relative!important;}
+	.product .h1 {line-height: 30px!important;}
+	.product-image p {font-size: 12px!important;}
+	
+	.product-description-8 .caption h2 {padding-right: 0!important; font-size: 20px!important;}
+	.product-image ~ div img {margin: 30px auto!important;}
+	.alarm-background-image p {padding: 0 15px!important;}
+	
+	.contacts .contacts {padding: 45px 0!important;}
+	ymaps[id] {width: 100%!important; margin-bottom: 30px;}
+	
+	.financial .product-image ~ div h2, .hotel .product-image ~ div h2, .visualization .product-image ~ div h2 {font-size: 20px!important;}
+	
+	.projects {margin-top: 30px!important;}
+	#project, .projects .description {background: #fff!important;}
+	.projects .projects #all-projects {display: block!important;}
+	.projects h1 {text-align: center!important;}
+	#all-projects .item {padding: 5px 15px!important;}
+	
+	.product-description-3 h2, .product-description-4 h2, .product-description-8 .caption, .product-description-1 .caption, .product-description-10 .caption, .product-description-11 .caption {margin-top: 10%!important;}
+	
+	.hotel .product-description-3 .border {margin: 15px auto!important; padding-bottom: 15px!important;}
+	.hotel .product-description-3 h2 {margin-bottom: 30px!important;}
+	.block {border: 0!important;}
+	.hotel .product-description-4 .col-md-6[style] {padding-left: 0!important; padding-right: 0!important;}
+	.hotel .product-description-4 .caption.m-t-3 {margin-top: 0!important;}
+	
+	.dots li {float: left!important; margin-right: 15px!important; margin-left: 0!important;}
+	.dots button {width: 30px!important;}
+	
+	.parallax img {top: 0!important; width: 100%!important; height: auto!important;}
+	
+	.product-description-4 .caption {margin-top: 15px!important;}
+	
+	.cat-1 .description {background: #fff!important;}
+	.description .separate, .cat-2 .description, .cat-3 .slider {margin-bottom: 30px!important;}
+	.cat-3 .caption {padding: 30px 0;}
+	.cat-3 {margin-bottom: 0!important; padding-bottom: 50px;}
+	.cat-1 .description .btn {float: none!important; display: block; margin: auto;}
+	
+	.slick-slide img {height: auto!important;}
+	
+	.block.search form input {background: url(../img/searching-bg.png) 45px center no-repeat!important;}
+	.block.search {padding: 20px 0 50px!important;}
+}
+@media screen and (min-width: 567px) and (max-width: 767px) {
+	#menu {overflow-y: scroll!important;}
+	#menu .nav, #menu div.close {height: auto!important; min-height: 120%;}
+	#menu .home {left: 82%!important;}
+}
+@media screen and (min-width: 768px) and (max-width: 1048px) {
+	header .search .close {top: 10px; right: 240px!important;}
+	.main-categories .col-md-6 {padding: 0 7.5px;}
+}
+@media screen and (min-width: 1024px) and (max-width: 1048px) {
+	header h1 {height: 55px!important;}
+	.aboutus .content-1 {height: 300px;}
+	.aboutus .content-1 img {width: 100%; max-width: 500%; height: auto;}
+}

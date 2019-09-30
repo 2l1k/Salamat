@@ -1,0 +1,9 @@
+<div class="carousel">
+    {% for object in objects %}
+    <div>
+        <a href="{{ object.link }}" target="_blank" title="{{ object.title }}" style="background: url({{ object.logo.url }});">
+            <img src="{{ object.logo.url }}" alt="" />
+        </a>
+    </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,12 @@
+
+
+<div class="caption">
+    <div class="title">Галерея</div>
+</div>
+<div class="slider-2">
+    {% for object in objects %}
+    <div>
+        <img src="{{ object.image.url }}" alt={{ object.title }} />
+    </div>
+    {% endfor %}
+</div>

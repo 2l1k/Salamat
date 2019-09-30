@@ -1,0 +1,366 @@
+{% extends "base.html" %}
+{% load catalog_tags crispy_forms_tags %}
+{% block js %}
+    {{ block.super }}
+    {{ form.media.js }}
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    {{ form.media.css }}
+{% endblock %}
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="" title="">Личный кабинет</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page cabinet">
+            <div class="container">
+                <div class="title title-2">
+                    <h1 class="h2 grey m-t-3 m-b-2 text-xs-center"><span>Личный кабинет</span></h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 pull-xs-none text-xs-center">
+                        <ul class="tabs">
+                            <li>
+                                <a href="{% url 'me' %}#tab-1" title="" class=""
+                                   onclick="window.location.href='{% url 'me' %}?tab=1'">Настройка профиля</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'me' %}#tab-2" title="" class=""
+                                 onclick="window.location.href='{% url 'me' %}?tab=2'">История открытий номеров</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'me' %}#tab-3" title="" class="active"
+                                 onclick="window.location.href='{% url 'me' %}?tab=3'">Товары и услуги</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab active" id="tab-1">
+                    <div class="title title-1">
+                        <h3 class="grey m-b-2"><span>Добавить товар/услугу</span></h3>
+                    </div>
+                    <!--<div class="controls">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-4">-->
+                                <!--<button class="btn add"><span>Скопировать товар/услугу</span></button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="row">
+                        <div class="col-xs-12 text-xs-center">
+                            <ul class="tabs-2">
+                                <li>
+                                    <a href="#tab-2-1" title="" class="active">Основная информация</a>
+                                </li>
+                                <li>
+                                    <a href="#tab-2-2" title="" class="">Характеристики</a>
+                                </li>
+                                <li>
+                                    <a href="#tab-2-3" title="" class="">SEO</a>
+                                </li>
+                                <li>
+                                    <a href="#tab-2-4" title="" class="">Скидки, сопутствующие и товары в подарок</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="tab-2 active" id="tab-2-1">
+                         {% crispy form %}
+                     </div>
+
+                     <div class="tab-2" id="tab-2-2">
+                         <div class="form product-info">
+                            <div class="row">
+                                <h3>Заполните основную информацию</h3>
+                            </div>
+                         </div>
+                     </div>
+                     <div class="tab-2" id="tab-2-3">
+                         <div class="form product-info">
+                            <div class="row">
+                                <h3>Заполните основную информацию</h3>
+                            </div>
+                         </div>
+                     </div>
+                     <div class="tab-2" id="tab-2-4">
+                         <div class="form product-info">
+                            <div class="row">
+                                <h3>Заполните основную информацию</h3>
+                            </div>
+                         </div>
+                     </div>
+                    {% comment %}
+                    <div class="tab-2 active" id="tab-2-1">
+
+                        <div class="form product-info">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" name="" placeholder="Наименование товара" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input_cat_block input_cat_chackbox">
+                                        <input type="text" class="input_cat_btn" value="Категории" readonly />
+                                        <div class="input_cat" style="display: none;">
+                                            <div class="input_cat_list">
+                                                <ul class="cat_scroll">
+                                                    <div class="cat_sub">
+                                                        <div class="cat_plus"></div>
+                                                        <li>
+                                                            <label>
+                                                                Стройматериалы
+                                                                <input type="checkbox" class="main-cat" name="" hidden value="" />
+                                                                <span></span>
+                                                            </label>
+                                                        </li>
+                                                        <ul>
+                                                            <div class="cat_sub">
+                                                                <div class="cat_plus"></div>
+                                                                <li>
+                                                                    <label>
+                                                                        Конструкционные материалы
+                                                                        <input type="checkbox" class="sub-cat" name="" hidden value="" />
+                                                                        <span></span>
+                                                                    </label>
+                                                                </li>
+                                                                <ul>
+                                                                    <li>
+                                                                        <label>
+                                                                            Отделочные
+                                                                            <input type="checkbox" class="sub-cat sub_sub-cat" name="" hidden value="" />
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="cat_sub">
+                                                        <div class="cat_plus"></div>
+                                                        <li>
+                                                            <label>
+                                                                Интерьер
+                                                                <input type="checkbox" name="" hidden value="" />
+                                                                <span></span>
+                                                            </label>
+                                                        </li>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="" placeholder="Цена" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="checkbox"><input type="checkbox" name="" value="" hidden /><span></span>Установить цену от</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select name="">
+                                        <option>Тип</option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="" placeholder="Количество" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <textarea rows="4" name="" placeholder="Описание товара"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="file">
+                                        <input type="file" name="" hidden />
+                                        <span>Загрузить файл</span>
+                                    </label>
+                                    <p>Форматы: JPG, GIF, PNG <br/>Максимальный размер 10 МБ.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <select name="">
+                                        <option>В наличие</option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="images">
+                                        <div class="image">
+                                            <button type="button" class="remove"></button>
+                                            <img src="img/demo-product.png" alt="" />
+                                        </div>
+                                        <div class="image">
+                                            <button type="button" class="remove"></button>
+                                            <img src="img/demo-product.png" alt="" />
+                                        </div>
+                                        <div class="image">
+                                            <button type="button" class="remove"></button>
+                                            <img src="img/demo-product.png" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn publication"><span>Опубликовать товар/услугу</span></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-2" id="tab-2-2">
+                        <div class="form product-specifications">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button type="button" class="add_specification"></button>
+                                    <input type="text" name="" placeholder="Название характеристики" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <textarea rows="4" name="" placeholder="Описание"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 pull-xs-none">
+                                    <ul class="specifications">
+                                        <li>Вес<span>0.9 кг.</span><button type="button" class="remove"></button></li>
+                                        <li>Предназначение<span>Кухня</span><button type="button" class="remove"></button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn publication"><span>Опубликовать товар/услугу</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-2" id="tab-2-3">
+                        <div class="form product-seo">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label class="radio">
+                                        <input type="radio" name="radiogroup" value="" hidden />
+                                        <span></span>
+                                        Значения, указанные в шаблоне
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="radiogroup" value="" hidden />
+                                        <span></span>
+                                        Использовать свои настройки
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pull-xs-right">
+                                    <p>Пример: Условия гарантии  на монтажные работы  СКС «Brand Rex».</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea rows="6" name="" placeholder="HTML заголовок"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pull-xs-right">
+                                    <p>Пример HTML описания:  Информация о условиях  гарантии компании</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea rows="6" name="" placeholder="HTML заголовок"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pull-xs-right">
+                                    <p>Пример ключевых слов:  Гарантия, ООО «Сеть»,  СКС, «Brand Rex»,</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea rows="6" name="" placeholder="HTML заголовок"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn publication"><span>Опубликовать товар/услугу</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-2" id="tab-2-4">
+                        <div class="form product-discount text-xs-center">
+                            <div class="row">
+                                <div class="col-md-4 discount">
+                                    <h3>Скидка</h3>
+                                    <label>
+                                        <input type="checkbox" name="" hidden checked="checked" />
+                                        <h2>20%</h2>
+                                        Добавить
+                                    </label>
+                                    <p>Вы можете указать сумму или процент скидки. Скидка будет отображать в указанный вами период на странице товара и в списке товаров, если:</p>
+                                    <p>товар актуальный;<br/>в наличие или под заказ;<br/>имеет цену.</p>
+                                </div>
+                                <div class="col-md-4 discount">
+                                    <h3>Скидка</h3>
+                                    <label>
+                                        <input type="checkbox" name="" hidden />
+                                        <h2>0</h2>
+                                        Добавить
+                                    </label>
+                                    <p>Вы можете указать сумму или процент скидки. Скидка будет отображать в указанный вами период на странице товара и в списке товаров, если:</p>
+                                    <p>товар актуальный;<br/>в наличие или под заказ;<br/>имеет цену.</p>
+                                </div>
+                                <div class="col-md-4 discount">
+                                    <h3>Скидка</h3>
+                                    <label>
+                                        <input type="checkbox" name="" hidden />
+                                        <h2>0</h2>
+                                        Добавить
+                                    </label>
+                                    <p>Вы можете указать сумму или процент скидки. Скидка будет отображать в указанный вами период на странице товара и в списке товаров, если:</p>
+                                    <p>товар актуальный;<br/>в наличие или под заказ;<br/>имеет цену.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

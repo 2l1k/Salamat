@@ -1,0 +1,38 @@
+
+<div class="title title-2 text-xs-center">
+    <h2 class="h1 m-b-2 grey"><span>Самые посещаемые магазины</span></h2>
+</div>
+<div class="slide-market">
+    {% for customer in customers_list %}
+        <div class="col-md-4 p-x-0 item">
+            <img src="{% if customer.mugshot %}{{ customer.mugshot.url }}{% else %}{{ STATIC_URL }}img/default_company.jpg{% endif %}" alt="">
+            <div class="caption">
+                <div class="middle">
+                    <h4>{{ customer.company_name }}</h4>
+                    <span>{{ customer.company_slogan }}</span>
+                    <a href="{{ customer.url }}" class="btn market">Перейти в магазин</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<style>
+.slide-market .col-md-4 img {
+	transition: 0.4s;
+	-o-fit-object: cover;
+	object-fit: cover;
+	z-index: 1;
+	width: 100%;
+	min-height: 470px;
+}
+
+
+
+.slide-market .slick-prev {
+    background: #fff url(../static/img/carousel-arrow-left.png) center no-repeat !important;
+}
+.slide-market .slick-next {
+    background: #fff url(../static/img/carousel-arrow-right.png) center no-repeat !important;
+}
+</style>

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load cms_tags %}
+
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="" title="/">Главная</a>
+                    </li>
+                    <li>
+                        <a href="" title="">{% page_attribute 'page_title' %}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page contacts-page">
+            <div class="container">
+                <div class="title title-1">
+                    <h1 class="grey m-t-1 m-b-3 text-xs-center"><span>{% page_attribute 'page_title' %}</span></h1>
+                </div>
+                <div class="cart-caption contacts-caption m-b-3 p-b-3 col-xs-12 grey">
+                    <p>{% placeholder "text" %}</p>
+
+                    <div class="row m-y-3">
+
+                        <div class="col-md-3">
+                            <div class="address">{% placeholder "address" %}</div>
+                        </div>
+                        <div class="col-md-6 text-md-center">
+                            <div class="phone">{% placeholder "phone" %}</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="email">{% placeholder "email" %}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="." method="post" id="contacts_form">{% csrf_token %}
+                                <input type="text" name="name" value="" placeholder="Имя" />
+                                <input type="text" name="phone" value="" placeholder="Номер телефона" />
+                                <input type="text" name="email" value="" placeholder="Email" />
+                                <textarea rows="" name="message" placeholder="Ваш вопрос"></textarea>
+                                <button class="btn send"><span></span></button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.417004791598!2d76.88788841548447!3d43.242681479137445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836914aa6f8f7b%3A0xef6ba4d8062b1156!2z0KHQsNC70LDQvNCw0YIgNA!5e0!3m2!1sru!2skz!4v1530531621604" width="800" height="600" frameborder="0" style="width: 100%; height: 195px; border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

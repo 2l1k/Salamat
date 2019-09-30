@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% load cms_tags news_tags brand_tags catalog_tags slider_tags notification_tags%}
+
+{% block content %}
+<section>
+    <div class="module house">
+        <!--img src="{{ STATIC_URL }}img/house.png" alt="" /-->
+        {% get_sliders %}
+    </div>
+
+    {% get_filter_category %}
+
+<!--    <div class="module rent">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-9 pull-xs-none text-xs-center">-->
+<!--                    {% get_recent_notifications %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div class="module companies">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-11 col-xs-10 pull-xs-none">
+                    {% get_brands %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- {{ block.super }} -->
+
+    <section>
+        <div class="container">
+            {% get_recent_customers %}
+        </div>
+    </section>
+
+    <div class="module news text-xs-center">
+        <div class="container">
+            {% get_recent_news %}
+        </div>
+    </div>
+    <div class="module gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 item item-1">
+                    <div class="caption">
+                        <div class="title">salamat5_almaty</div>
+                        <a href="https://instagram.com/salamat5_almaty" title="" target="blanc">Подписаться</a>
+                    </div>
+                    <style>
+                        .elfsight-app-75fb95b6-82f6-4629-8f8b-56bcda9950bc {max-width: 100%; height: 385px;}
+                        .elfsight-app-75fb95b6-82f6-4629-8f8b-56bcda9950bc > a {display: none !important;}
+                        .eapps-instagram-feed-posts-item-image-wrapper{height: 385px;}
+                        .eapps-instagram-feed-container{height: 415px;}
+                    </style>
+                    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+                    <div class="elfsight-app-75fb95b6-82f6-4629-8f8b-56bcda9950bc"></div>
+                </div>
+                <div class="col-md-4 item item-2">
+                    {% get_gallery_slider %}
+
+                </div>
+                <div class="col-md-4 item item-3">
+                    {% get_video_slider %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="module categories">
+        <div class="container">
+            {% get_categories_slider %}
+        </div>
+    </div>
+    <div class="module aboutus">
+        <div class="container">
+            <div class="caption">
+                <h4 class="red black">О нас</h4>
+                {% static_placeholder "about_us" %}
+
+                <a href="/about/" title="" class="btn"><span></span></a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

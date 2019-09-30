@@ -1,0 +1,50 @@
+<div class="input_cat_block input_cat_chackbox">
+
+    <input type="text" class="input_cat_btn" value="{% if title %}{{ title }}{% else %}Категории{% endif %}" readonly />
+    <div class="input_cat" style="display: none;">
+        <div class="input_cat_list">
+            <ul class="cat_scroll list-unstyled">
+                {% for cat in cats %}
+                <div class="cat_sub">
+                    <div class="cat_plus"></div>
+                    <li>
+                        <label>
+                            {{ cat.title }}
+{#                            <input type="checkbox" class="main-cat" name="" hidden value="{{ cat.id }}" />#}
+{#                            <span></span>#}
+                        </label>
+                    </li>
+                    <ul class="list-unstyled">
+                        {% for cat2 in cat.childs.all %}
+                        <div class="cat_sub">
+                            <div class="cat_plus"></div>
+                            <li>
+                                <label>
+                                    {{ cat2.title }}
+{#                                        <input type="checkbox" class="sub-cat" name="" hidden value="{{ cat2.id }}" />#}
+{#                                        <span></span>#}
+                                </label>
+                            </li>
+                            <ul>
+                                {% for cat3  in cat2.childs.all %}
+                                <li>
+                                    <label>
+                                        {{ cat3.title }}
+                                        <input type="radio" class="sub-cat sub_sub-cat" name="category" hidden value="{{ cat3.id }}"
+                                         {% if cat3.id|slugify == val|slugify %}
+                                             checked="checked"
+                                          {% endif %}/>
+                                        <span></span>
+                                    </label>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

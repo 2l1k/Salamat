@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="" title="">Арендаторам</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page rent-page">
+            <div class="container">
+                <div class="text-xs-center">
+                    <ul class="tabs">
+{#                        <li>#}
+{#                            <a href="#tab-1" title="" class="active">Торговые площади</a>#}
+{#                        </li>#}
+                        <li>
+                            <a href="#tab-2" title="" class="active">Сдаются в аренду</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab " id="tab-1">
+                    {% for object in cat1 %}
+                        <div class="rent-item cart-caption m-b-1 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 text-xs-center">
+                                <span class="grey light">{{ object.get_category_display }}</span>
+                                <h2>{{ object.area }} кв.м</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="light grey"><span class="h4 regular red">{{ object.get_building_display }}</span> Сдаются в аренду помещения</h5>
+                            </div>
+                            <div class="col-md-3 text-md-right">
+                                <a href="" title="" class="red">Показать на карте</a>
+                                <button class="btn m-t-1 mw open-form"><span>Подать заявку</span></button>
+                            </div>
+                        </div>
+                        <form class="m-t-2" action="{% url 'feedback' %}" method="post">{% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-8">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}?tab=1">
+                                        <input type="hidden" name="subject" value="{{ object.get_category_display}}, {{ object.area }} кв.м , {{ object.get_building_display }}" />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" name="name" placeholder="Ваше имя" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="phone" placeholder="Номер телефона" />
+                                            </div>
+                                        </div>
+                                        <textarea rows="2" name="message" placeholder="Сообщение"></textarea>
+                                        <button class="btn mw send"><span></span></button>
+                                </div>
+                                <div class="col-md-4 text-md-right">
+                                    <p class="grey light">Или позвоните по номеру: </p>
+                                    <a href="tel:+77004515180" title="" class="red">+7 (700) 451 51 80</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                <div class="tab active" id="tab-2">
+                    {% for object in cat2 %}
+                        <div class="rent-item cart-caption m-b-1 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3 text-xs-center">
+                                <span class="grey light">{{ object.get_category_display }}</span>
+                                <h2>{{ object.area }} кв.м</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="light grey"><span class="h4 regular red">{{ object.get_building_display }}</span> Сдаются в аренду помещения</h5>
+                            </div>
+                            <div class="col-md-3 text-md-right">
+                                <a href="{{ object.id }}" title="" class="red">Показать на карте</a>
+                                <button class="btn m-t-1 mw open-form"><span>Подать заявку</span></button>
+                            </div>
+                        </div>
+                        <form class="m-t-2" action="{% url 'feedback' %}" method="post">{% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-8">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}?tab=2">
+                                        <input type="hidden" name="subject" value="{{ object.get_category_display}}, {{ object.area }} кв.м , {{ object.get_building_display }}" />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" name="name" placeholder="Ваше имя" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="phone" placeholder="Номер телефона" />
+                                            </div>
+                                        </div>
+                                        <textarea rows="2" name="message" placeholder="Сообщение"></textarea>
+                                        <button class="btn mw send"><span></span></button>
+                                </div>
+                                <div class="col-md-4 text-md-right">
+                                    <p class="grey light">Или позвоните по номеру: </p>
+                                    <a href="tel:+77004515180" title="" class="red">+7 (700) 451 51 80</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="module info text-xs-center white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 info-1">
+                        <h2 class="h1 m-b-3"><span>Арендаторам</span></h2>
+                        <p>Аренда по доступным ценам.  Более 500 арендаторов. Более 8 000 кв.м</p>
+                        <a href="" title="" class="btn mw m-t-3">Подать заявку</a>
+                    </div>
+                    <div class="col-md-6 info-2">
+                        <h2 class="h1 m-b-3"><span>Магазин месяца</span></h2>
+                        <p>Лучшее у нас</p>
+                        <a href="" title="" class="btn mw m-t-3">Перейти в магазин</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

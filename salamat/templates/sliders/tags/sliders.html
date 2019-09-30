@@ -1,0 +1,108 @@
+
+<div class="slider">
+    {% for object in objects %}
+        <div>
+            <img src="{{ object.image.url }}" alt="" />
+            <div class="caption">
+                <div class="container">
+
+                    <div class="row">
+							<div class="col-md-4 col-md-offset-1">
+
+								<h2 class="title title-2"><span>{{ object.title }}</span></h2>
+
+								<p>{{ object.description|safe }}</p>
+								<a href="{{ object.link }}" title="" class="btn mw">Подробнее</a>
+
+							</div>
+							<div class="col-md-4 col-md-offset-2">
+								<h3>Снять помещение в аренду</h3>
+								<form action="{% url 'feedback' %}" method="post">
+									{% csrf_token %}
+									<input type="hidden" name="redirect_url" value="{{ request.path }}?tab=2">
+
+									<input type="text" name="name" value="" placeholder="Имя" tabindex="0">
+									<input type="text" name="phone" value="" placeholder="Номер телефона" tabindex="0">
+
+									<div class="select">
+										<a href="#area1{{ object.id }}" title="" class="area-btn" tabindex="0">
+											<span>Площадь</span>
+										</a>
+										<div id="area1{{ object.id }}" class="area">
+											{% for rent in rents %}
+											<label>
+												<input type="radio" name="area" value="{{ object.area }} кв.м" hidden="" tabindex="0">
+												<span>{{ rent.area }} кв.м</span>
+											</label>
+											{% endfor %}
+										</div>
+									</div>
+									<button class="btn send-message" tabindex="0"><span>Отправить </span></button>
+								</form>
+							</div>
+						</div>
+
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+$(document).ready(function () {
+	{% for object in objects %}
+	$("#area1{{ object.id }} label").click(function() {
+        var name = $(this).find("span").html();
+        $(".area-btn span").html(name);
+    });
+	$(document).click(function(e) {
+        if ($(e.target).closest(".area-btn").length) return;
+        $("#area1{{ object.id }}").slideUp();
+        e.stopPropagation();
+        $("[href='#area1{{ object.id }}']").removeClass("active");
+    });
+	{% endfor %}
+});
+</script>
+
+<style>
+    .slider-arend h3, .slider h3 {
+	font-size: 1.875rem;
+	margin-bottom: 43px;
+	position: relative;
+}
+.slider-arend h3:after, .slider h3:after {
+	content: '';
+	position: absolute;
+	width: 50px;
+	height: 3px;
+	background: #ff5050;
+	bottom: -10px;
+	left: 0;
+}
+
+.select {
+	width: 100%;
+	height: 40px;
+	margin-bottom: 15px;
+	padding: 10px 15px;
+	border: 1px solid #dddddd;
+	border-top-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	font-family: "Roboto-Regular";
+	font-size: 1rem;
+	background: #fff;
+	position: relative;
+}
+
+.slider-arend .select, .slider.select {
+	position: initial;
+}
+.slider-arend .area, .slider.area {
+	box-shadow: 0 0 65px 10000px rgba(0, 0, 0, 0.5);
+}
+.slider .slick-slide img {
+	width: 100%;
+}
+</style>

@@ -1,0 +1,39 @@
+{% extends "base_clean.html" %}
+{% load i18n %}
+
+{% block page_title %}{% trans "Signup almost done" %}{% endblock %}
+{% block page_header %}{% trans "Signup almost done" %}{% endblock %}
+
+{% block content %}
+<section>
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                <li>
+                    <a href="/" title="">Главная</a>
+                </li>
+                <li>
+                    <a href="" title="">Регистрация</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="page login-page">
+        <div class="container">
+
+            <p>{% trans "Thank you for signing up with us!" %}</p>
+
+            {% if userena_activation_required %}
+                <p>
+                    {% blocktrans %}You have been sent an e-mail with an activation link to the supplied email.{% endblocktrans %}
+                    {% comment %}{% blocktrans %}We will store your signup information for {{ userena_activation_days }} days on our server. During this period you should activate your account.{% endblocktrans %}{% endcomment %}
+                </p>
+            {% else  %}
+                <p>{% blocktrans %}You can now use the supplied credentials to signin.{% endblocktrans %}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

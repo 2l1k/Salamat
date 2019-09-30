@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% load catalog_tags crispy_forms_tags %}
+{% block title %}Salamat: {% if object.seo_title %}{{ object.seo_title }}{% else %}{{ object.category.path }}:{{ object.title}} {% endif %}{% endblock %}
+{% block meta_keywords %}{% if object.seo_keywords %}{{object.seo_keywords}}{% else %}{{ object.tags }}{% endif %}{% endblock %}
+{% block meta_descriprion %}{% if object.seo_description %}{{object.seo_description|striptags|safe}}{% else %}{{ object.description|striptags|safe}} {% endif %}{% endblock %}
+{% block content_inner %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная </a>
+                    </li>
+                    <li>
+                        <a href="" title="">{{ object.title }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page product-page">
+            <div class="container">
+                <div class="cart-caption">
+                    <div class="row">
+                        <div class="col-md-5 text-xs-center">
+                            <div class="title title-1">
+                                <h1 class="h2 m-b-2"><span>{{ object.title }}</span></h1>
+                            </div>
+                            <div class="image">
+                                <a class="fresco" data-fresco-group="product_images" href="{% if object.image %}{{ object.image.file.url }}{% else %}{{ STATIC_URL }}img/default_product_image.png{% endif %}"><img id="image" src="{% if object.image %}{{ object.image.file.url }}{% else %}{{ STATIC_URL }}img/default_product_image.png{% endif %}" alt="" /></a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h2 class="red m-b-2">{% if object.price_from %}от {% endif %}{% if object.total %}{{ object.total|money_format}} Т{%endif%}</h2>
+                            <h4 class="red">Краткое описание</h4>
+                            <ul>
+                                <li>Подкатегория<span>{{ object.category.title }}</span></li>
+                                <li>Бренд<span>{{ object.brand }}</span></li>
+                                <li>Коллекция<span>{{ object.collection }}</span></li>
+                                <li>Цвет<span>{{ object.color }}</span></li>
+                            </ul>
+                            <div class="row images">
+                                {% for image in  object.images %}
+                                    <div class="col-xs-3">
+                                        <a href="{{ image.file.url }}" title="" data-fresco-group="product_images" class="fresco image {% if forloop.first %}active{% endif %}">
+                                            <img src="{{ image.file.url }}" alt="" />
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                        {% with profile=object.user.profile %}
+                            {% if profile.phone %}
+                            <label class="grey show">
+                                Показать
+                                <input type="checkbox" name="show_phone" /><span></span>
+                            </label>
+                            {% endif %}
+                            {% if profile.whatsapp %}<a href="https://wa.me/{{ profile.whatsapp }}" title="" class="whatsapp grey" target="blanc">Whatsapp</a>{% endif %}
+                            {% if profile.phone %}<p class="red m-y-2 show_phone" data-customer="{{ profile.id }}" data-value="{{ profile.phone }}">+77**********</p>{% endif %}
+                            <a href="{{ profile.map_url }}" title=""  class="btn mw"><span>Найти бутик</span></a>
+                            <p class="grey light m-t-2 m-b-0">Магазин</p>
+                            <a href="{{ profile.url }}" title="" class="h3" style="color: #000;">{{ profile.company_name }}</a>
+                        {% endwith %}
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs-content">
+                    <div class="title title-2">
+                        <h2 class="grey m-t-3 m-b-2 text-xs-center"><span>Характеристики</span></h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 pull-xs-none text-xs-center">
+                            <ul class="tabs">
+                                <li>
+                                    <a href="#tab-1" title="" class="{% if tab != '3' %} active{% endif %}">Характеристики</a>
+                                </li>
+                                <li>
+                                    <a href="#tab-2" title="" class="">Описание товара</a>
+                                </li>
+                                <li>
+                                    <a href="#tab-3" title="" class="sss {% if tab == '3' %}sss active{% endif %}">Отзывы</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 pull-xs-none">
+                            <div class="tab {% if tab != '3' %} active{% endif %}" id="tab-1">
+                                <ul class="specifications">
+                                    {% for char in object.productcharacteristic_set.all %}
+                                        <li>{{ char.title }}<span>{{char.characteristic_desc}}</span></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="tab" id="tab-2">
+                                {{ object.description|safe }}
+
+                            </div>
+                            <div class="tab {% if tab == '3' %} active{% endif %}" id="tab-3">
+                                <div class="form-review">
+                                    <!--<div class="title btn mw"><span>Оставить отзыв</span></div>-->
+                                    <form action="{{ object.review_create_url }}" method="post"> {% csrf_token %}
+                                        <div class="form">
+                                        {% crispy review_form %}
+                                        <button class="btn mw" ><span style="background: url('/static/img/icon-mail.png') right center no-repeat; display: inline-block;height: 100%; padding-right: 30px;">Оставить отзыв</span></button>
+
+                                            <!--input type="text" name="title" placeholder="Ваше имя" />
+                                            <div class="rating">
+                                                Пожалуйста, поставьте свою оценку
+                                                <div class="stars">
+                                                    <input name='rating' type="radio" id="rating-0" name="rating" value="0" checked="checked" hidden /><label hidden></label>
+                                                    <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1"></label>
+                                                    <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2"></label>
+                                                    <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3"></label>
+                                                    <input type="radio" id="rating-4" name="rating" value="4" /><label for="rating-4"></label>
+                                                    <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5"></label>
+                                                </div>
+                                            </div>
+                                            <textarea rows="" name="message" placeholder="Ваш отзыв"></textarea>
+                                            <button class="btn mw"><span></span></button-->
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="list-reviews">
+                                    {% for review in object.reviews %}
+                                    <div class="review">
+                                        <div class="name">{{ review.title }}</div>
+                                        <div class="rating">
+                                            <div class="stars">
+                                                {% for r in review.rating_range %}
+                                                    <span class="active"></span>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="date">{{ review.date_added|date:"d.m.Y"}}</div>
+                                        <div class="description">{{ review.message }}</div>
+                                    </div>
+                                    {% endfor %}
+{#                                    <a href="" title="" class="more">Еще</a>#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if object.similar_products %}
+        <div class="module related text-xs-center">
+            <div class="container">
+                <div class="products">
+                    <div class="title title-1">
+                        <h2 class="grey m-t-3 m-b-2 text-xs-center"><span>Сопутствующие товары</span></h2>
+                    </div>
+                    <div class="carousel-2">
+                        {% for similar in object.similar_products %}
+                            <div>
+                                <a href="{{ similar.url }}" title="" class="product">
+                                    <div class="image" style="background: #fff url({{ similar.image.file.url }});"></div>
+                                    <div class="caption">
+                                        <h4>{{ similar.title}}</h4>
+                                        <span class="red">{% if similar.price %}{{ similar.price|money_format}} т{% else %}Уточнить стоимость{%endif%}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if object.similar_shops %}
+        <div class="module news stores text-xs-center">
+            <div class="container">
+                <div class="title title-2">
+                    <h2 class="h1 m-b-2 grey"><span>Похожие магазины</span></h2>
+                </div>
+                <div class="carousel-2">
+                    {% for u in object.similar_shops %}
+                    <div class="item">
+                        <a href="{{ u.profile.url }}" title="" style="background: url({% if u.profile.mugshot %}{{ u.profile.mugshot.url }}{% else %}{{ STATIC_URL }}img/default_company.jpg{% endif %});">
+                            <div class="caption">
+                                <div class="middle">
+                                    <img src="{% if u.profile.mugshot %}{{ u.profile.mugshot.url }}{% else %}{{ STATIC_URL }}img/default_company_logo.png{% endif %}" alt="" />
+                                    <h4 class="black">{{ u.profile.company_name}}</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+{% endblock content_inner %}

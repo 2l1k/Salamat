@@ -1,0 +1,293 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-08 09:30+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: aboutus.html:53
+msgid "КЛИЕНТЫ"
+msgstr "CLIENTS"
+
+#: aboutus.html:63 base.html:99
+msgid "ПАРТНЕРЫ"
+msgstr "PARTNERS"
+
+#: aboutus.html:81 base.html:101
+msgid "СЕРТИФИКАТЫ"
+msgstr "CERTIFICATES"
+
+#: aboutus.html:98 base.html:102
+msgid "СЕРВИСНОЕ ОБСЛУЖИВАНИЕ"
+msgstr "SERVICE"
+
+#: admin/base_site.html:4 admin_/base_site.html:4
+msgid "Site administration"
+msgstr ""
+
+#: admin_/change_list.html:41 admin_/delete_confirmation.html:7
+#: admin_/delete_selected_confirmation.html:7 admin_/object_history.html:7
+msgid "Home"
+msgstr "Главная"
+
+#: admin_/change_list.html:58
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: admin_/change_list.html:67
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin_/change_list.html:78
+msgid "Filter"
+msgstr ""
+
+#: admin_/delete_confirmation.html:11
+msgid "Delete"
+msgstr ""
+
+#: admin_/delete_confirmation.html:18
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: admin_/delete_confirmation.html:26
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: admin_/delete_confirmation.html:34
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: admin_/delete_confirmation.html:39
+#: admin_/delete_selected_confirmation.html:44
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: admin_/delete_selected_confirmation.html:10
+msgid "Delete multiple objects"
+msgstr ""
+
+#: admin_/delete_selected_confirmation.html:17
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: admin_/delete_selected_confirmation.html:25
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: admin_/delete_selected_confirmation.html:33
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: admin_/object_history.html:11
+msgid "History"
+msgstr ""
+
+#: admin_/object_history.html:23
+msgid "Date/time"
+msgstr ""
+
+#: admin_/object_history.html:24
+msgid "User"
+msgstr ""
+
+#: admin_/object_history.html:25
+msgid "Action"
+msgstr ""
+
+#: admin_/object_history.html:39
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: aldryn_search/includes/pagination.html:11
+msgid "из"
+msgstr ""
+
+#: aldryn_search/includes/search_items.html:12
+msgid "No results found for"
+msgstr ""
+
+#: aldryn_search/search_results.html:19
+msgid "results"
+msgstr ""
+
+#: base.html:45
+msgid "Меню"
+msgstr "Menu"
+
+#: base.html:60
+msgid "Поиск"
+msgstr "Search"
+
+#: base.html:96
+msgid "О НАС"
+msgstr "ABOUT US"
+
+#: base.html:98
+msgid "Клиенты"
+msgstr "Clients"
+
+#: base.html:100
+msgid "Проекты"
+msgstr "Projects"
+
+#: base.html:106
+msgid "СИСТЕМНАЯ ИНТЕГРАЦИЯ"
+msgstr "SYSTEM INTEGRATION"
+
+#: base.html:109
+msgid "СЕНСОРНОЕ ОБОРУДОВАНИЕ"
+msgstr "SENSOR EQUIPMENT"
+
+#: base.html:111
+msgid "EDUCATION"
+msgstr "EDUCATION"
+
+#: base.html:112
+msgid "COMMERCE"
+msgstr "COMMERCE"
+
+#: base.html:113
+msgid "FINANCIAL"
+msgstr "FINANCIAL"
+
+#: base.html:117
+msgid "ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ"
+msgstr "SOFTWARE"
+
+#: base.html:120
+msgid "ВИЗУАЛИЗАЦИЯ"
+msgstr "VISIALISATION"
+
+#: base.html:123
+msgid "ГОСТИНИЧНЫЕ РЕШЕНИЯ"
+msgstr "HOTEL SOLUTIONS"
+
+#: base.html:125
+msgid "ГОСТИНИЧНОЕ ТВ"
+msgstr "HOTEL TV"
+
+#: base.html:126
+msgid "АВТОМАТИЗАЦИЯ ГОСТИНИЦ"
+msgstr "HOTEL AUTOMATION"
+
+#: base.html:127
+msgid "ПО ДЛЯ ГОСТИНИЧНЫХ РЕШЕНИЙ"
+msgstr "HOTEL SOLUTIONS SOFTWARE"
+
+#: base.html:131
+msgid "SMART SOLUTIONS / IOT"
+msgstr "SMART SOLUTIONS / IOT"
+
+#: base.html:133
+msgid "SMART CITY НАВИГАЦИЯ"
+msgstr "SMART CITY NAVIGATION"
+
+#: base.html:134
+msgid "SMART CONDOMINIUM УМНЫЙ ДОМОФОН"
+msgstr "SMART CONDOMINIUM INTERCOM"
+
+#: base.html:135
+msgid "SMART CONDOMINIUM РЕКЛАМА У ЛИФТА"
+msgstr "SMART CONDOMINIUM ELEVATOR ADVERTISING"
+
+#: base.html:136
+msgid "SMART SECURITY ТРЕВОЖНАЯ КНОПКА"
+msgstr "SMART SECURITY ALARM BUTTON"
+
+#: base.html:140
+msgid "БЕСПИЛОТНЫЕ АВИАЦИОННЫЕ СИСТЕМЫ"
+msgstr "UNMANNED AERIAL SYSTEMS"
+
+#: base.html:143
+msgid "КОНТАКТЫ"
+msgstr "CONTACTS"
+
+#: base.html:183 contacts.html:34
+msgid "Адрес"
+msgstr "Address"
+
+#: base.html:184 base.html.py:234 contacts.html:41 contacts.html.py:49
+msgid "Контакты"
+msgstr "Contacts"
+
+#: base.html:189
+msgid "Схема"
+msgstr "Location"
+
+#: base.html:189
+msgid "проезда"
+msgstr "map"
+
+#: base.html:224
+msgid "Все права защищены."
+msgstr "All rights reserved"
+
+#: city.html:257 commerce.html:185 domofon.html:80 education.html:162
+#: financial.html:103 hotel.html:157 visualization.html:180
+msgid "Галерея"
+msgstr "Gallery"
+
+#: contacts.html:50
+msgid "Будем на связи!"
+msgstr "Let's keep in touch!"
+
+#: contacts.html:53
+msgid "Ваш e-mail"
+msgstr "Your e-mail"
+
+#: contacts.html:54
+msgid "Имя/Компания"
+msgstr "Name/Company"
+
+#: contacts.html:55
+msgid "Ваш запрос"
+msgstr "Your enquiry"
+
+#: contacts.html:60
+msgid "Отправить"
+msgstr "Send"
+
+#: sensor.html:48 sensor.html.py:91 sensor.html.py:136
+msgid "Подробнее"
+msgstr "Learn more"
+
+#~ msgid "УДОБСТВО НАВИГАЦИИ"
+#~ msgstr "NAVIGATION CONVENIENCE"

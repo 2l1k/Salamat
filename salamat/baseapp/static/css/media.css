@@ -1,0 +1,192 @@
+.burger {display: none;}
+@media screen and (max-width: 1200px) {
+	html {
+		font-size: 14px;
+	}
+}
+@media screen and (max-width: 1024px) {
+
+html {
+	font-size: 12px;
+}
+
+.header-1 .item {padding-right: 20px;}
+.header-1 .item, .header-1 a {
+	height: auto;
+	line-height: 24px;
+}
+.header-contacts .item + .item {margin-left: 0;}
+.header-contacts .item-2 .item br {display: none;}
+.header-contacts .item-3 {float: right;}
+.header-account .item + .item {margin-right: 15px;}
+.header-contacts .item-4, .header-account .item {margin-top: 15px;}
+.header-contacts .item-4 a {height: 24px;}
+
+.logo img {vertical-align: middle;}
+.burger {
+	display: block;
+	width: 24px;
+	height: 50px;
+	float: right;
+	background: url(../img/icon-burger.png) center no-repeat;
+	background-size: 100%;
+	border: 0;
+}
+#menu {
+	display: none;
+	position: absolute;
+	top: 50px;
+	right: 0;
+	width: 200%;
+	background: #fff;
+	box-shadow: 10px 4px 65px rgba(0, 0, 0, .09);
+	z-index: 9999;
+}
+#menu li {
+	width: 100%;
+	height: 40px;
+    line-height: 40px;
+    margin-left: 25px;
+}
+#menu li:first-child {
+	list-style-type: disc;
+	list-style-position: inside;
+}
+
+.header-3 {background: linear-gradient(to bottom, #fff 50%, #e8e8e8 50%);}
+.catalog-btn {max-width: 9999px; margin-bottom: 15px;}
+#catalog {z-index: 999;}
+#catalog li.open {height: auto;}
+#catalog ul {
+	position: relative;
+    top: 100%;
+    left: auto;
+    right: 0;
+    width: calc(100% + 40px);
+    height: auto;
+	z-index: 9;
+}
+#catalog li {
+	position: relative;
+}
+#catalog a {
+    width: auto;
+	text-decoration: underline;
+}
+#catalog ul ul li a {
+    width: auto;
+}
+
+.header-search input {width: calc(60% - 30px);}
+.categories-btn {width: 40%;}
+.categories-btn span {padding-right: 20px;}
+#categories {right: 40px; width: calc(100% - 50px);}
+.header-search button {width: 30px;}
+
+.house, .rent .form {
+    overflow-x: hidden;
+}
+.house img {
+    max-width: 300%;
+    float: right;
+}
+
+.rent .slick-arrow {
+	background-size: 60%!important;
+}
+.rent .slick-prev {
+    right: 75%;
+	background: url(../img/slider-arrow-left-hover.png) center no-repeat;
+}
+.rent .slick-next {
+    left: 75%;
+	background: url(../img/slider-arrow-right-hover.png) center no-repeat;
+}
+.rent .form {
+    margin-top: 0;
+}
+.rent select {
+	margin-bottom: 15px;
+}
+.rent a {
+	width: 100%;
+}
+
+.carousel .slick-arrow {
+    width: 18px;
+    height: 28px;
+	background-size: 100%!important;
+}
+.carousel .slick-prev {
+    background: url(../img/carousel-arrow-left-hover.png) center no-repeat;
+}
+.carousel .slick-next {
+    background: url(../img/carousel-arrow-right-hover.png) center no-repeat;
+}
+
+.info {background-size: auto 150%;}
+.info h2, .info p {height: auto; margin-bottom: 15px!important;}
+.info .btn {margin-top: 0!important; margin-bottom: 15px!important;}
+
+.title {margin-top: 30px;}
+
+.categories {padding: 15px;}
+.categories h4 {margin-bottom: 15px;}
+
+.aboutus .caption {padding: 45px;}
+
+.footer .col-md-3 {margin-bottom: 45px;}
+.footer h4 {margin-bottom: 15px;}
+.footer br {display: none;}
+
+.copyright img {margin-left: 0!important; vertical-align: middle!important;}
+
+.carousel-2 .slick-arrow {
+	z-index: 9;
+}
+.carousel-2 .slick-prev {
+    left: 0;
+	background: url(../img/carousel-arrow-left-hover.png) center no-repeat;
+}
+.carousel-2 .slick-next {
+    right: 0;
+	left: auto;
+	background: url(../img/carousel-arrow-right-hover.png) center no-repeat;
+}
+
+.cart-caption {padding: 50px 15px 60px;}
+.cart-caption img {margin-bottom: 15px;}
+
+.tabs {margin-bottom: 0;}
+
+.form-review {margin-top: 35px;}
+.form-review .title {margin-top: 0;}
+.form-review form {padding: 35px 15px;}
+.form-review [type=text] {width: 100%;}
+.rating {width: 100%;}
+
+.article-description .images img {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.contacts-page form {margin-bottom: 35px;}
+
+.levels, .plan {height: auto;}
+.level-plan {
+	transform-origin: right center;
+    transform: scale(.5);
+}
+
+.house .slick-slide:before {width: 100%;z-index: 9;}
+.house .caption {padding: 0 30px;}
+
+.post-description {height: auto;}
+
+.contacts-page .address, .contacts-page .phone, .contacts-page .email {margin-bottom: 15px;}
+
+.login-caption label, .login-caption a {margin: 15px 0 0;}
+
+.login-page .btn {max-width: 220px; margin-top: 15px;}
+
+}

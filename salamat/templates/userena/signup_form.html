@@ -1,0 +1,70 @@
+{% extends "base_clean.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/" title="">Главная</a>
+                    </li>
+                    <li>
+                        <a href="" title="">Регистрация</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page login-page">
+            <div class="container">
+                <div class="title title-1">
+                    <h1 class="grey m-t-1 m-b-3 text-xs-center"><span>Регистрация</span></h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pull-xs-none">
+                        <div class="cart-caption login-caption m-b-3 p-b-3 col-xs-12 text-xs-center grey">
+
+
+                            <form method="post">{% csrf_token %}
+                             {% crispy form %}
+                                {% comment %}
+                                    <input type="text" name="company_name" placeholder="Название компании" />
+                                    <input type="text" name="contract_number" placeholder="Номер договора с Саламат" />
+                                    <input type="text" name="email" placeholder="E-mail" />
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <input type="text" name="phone" placeholder="Номер телефона" />
+                                        </div>
+                                        <div class="col-md-5">
+                                            <button class="btn sms"><span>Получить код</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <input type="text" name="" placeholder="Введите код" />
+                                        </div>
+                                        <div class="col-md-7">
+                                            <button class="btn sms"><span>Отправить еще раз</span></button>
+                                        </div>
+                                    </div>
+                                    <p class="m-t-0">На отправленный номер придет СМС-код</p>
+                                    <input type="password" name="password1" placeholder="Пароль" />
+                                    <input type="password" name="password2" placeholder="Подтверждение пароля" />
+                                {% endcomment %}
+                                <div class="row">
+                                    <div class="col-md-7 text-md-left">
+                                        <button class="btn registration"><span>Зарегистрироваться</span></button>
+                                    </div>
+                                    <div class="col-md-5 text-md-right">
+                                        <button name="cancel" class="btn mw cancel"><span>Отмена</span></button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

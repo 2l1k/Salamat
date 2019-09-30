@@ -1,0 +1,165 @@
+
+.fs-widget {
+  display: block;
+  margin: 10px 0;
+  *zoom: 1;
+}
+.fs-widget:before,
+.fs-widget:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.fs-widget:after {
+  clear: both;
+}
+.fs-widget .btn {
+  font-size: inherit;
+}
+.fs-widget .thumbnail {
+  background-color: #fff;
+  outline: none;
+}
+.fs-widget .fs-file-input {
+  position: relative;
+  overflow: hidden;
+  float: left;
+}
+.fs-widget .fs-file-input input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  transform: translate(-300px, 0) scale(4);
+  font-size: 23px;
+  direction: ltr;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+* html .fs-widget .fs-file-input {
+  /* Fix for IE 6: */
+
+  line-height: 24px;
+  margin: 1px -3px 0 0;
+}
+* + html .fs-widget .fs-file-input {
+  /* Fix for IE 7: */
+
+  padding: 2px 15px;
+  margin: 1px 0 0 0;
+}
+.fs-widget .fs-upload,
+.fs-widget .fs-file-info {
+  overflow: hidden;
+}
+.fs-widget .fs-upload .error,
+.fs-widget .fs-file-info .error,
+.fs-widget .fs-upload .progress,
+.fs-widget .fs-file-info .progress,
+.fs-widget .fs-upload .size,
+.fs-widget .fs-file-info .size,
+.fs-widget .fs-upload .name,
+.fs-widget .fs-file-info .name {
+  float: left;
+  line-height: 20px;
+  margin-right: 10px;
+}
+.fs-widget .fs-upload .size,
+.fs-widget .fs-file-info .size {
+  color: #999;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 22px;
+}
+.fs-widget .fs-uploads {
+  height: 30px;
+  overflow: hidden;
+  padding: 0 0 0 10px;
+}
+.fs-widget .fs-uploads .fs-upload {
+  height: 20px;
+  padding: 5px 0;
+  position: relative;
+}
+.fs-widget .fs-uploads .fs-upload .progress {
+  height: 10px;
+  margin: 6px 10px 0 0;
+  width: 110px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.fs-widget .fs-uploads .fs-upload .name {
+  max-width: 40%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.fs-widget .fs-files {
+  *zoom: 1;
+}
+.fs-widget .fs-files:before,
+.fs-widget .fs-files:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.fs-widget .fs-files:after {
+  clear: both;
+}
+.fs-widget .fs-files .fs-file {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+.fs-widget .fs-files .fs-file .preview a {
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.fs-widget .fs-files .fs-file .preview a img {
+  background: transparent;
+  max-height: 100%;
+}
+.js .fs-widget .fs-files .fs-file .preview a img {
+  display: none;
+}
+.fs-widget .fs-files .fs-file .preview a.loading {
+  background-image: url("../img/loading.gif");
+}
+.fs-widget .fs-files .fs-file.with-errors {
+  clear: both;
+  float: none;
+  margin: 10px -5px;
+  padding: 5px;
+}
+.fs-widget .fs-files .fs-file.with-errors .errors {
+  margin-bottom: 5px;
+}
+.fs-widget .fileinput-button {
+  margin: 0;
+  min-width: 64px;
+}
+.fs-widget .alert {
+  margin-bottom: 10px;
+  overflow: hidden;
+  padding: 5px 35px 5px 14px;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.fs-widget .alert .close {
+  display: block;
+  float: none;
+  position: absolute;
+  right: 8px;
+  top: 2px;
+}
+.fs-widget .alert .fs-file-info .error {
+  float: none;
+  margin: 0;
+}

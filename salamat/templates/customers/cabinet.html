@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% load baseapp_tags humanize %}
+
+
+{% block content %}
+    <section>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="" title="/">Главная</a>
+                    </li>
+                    <li>
+                        <a href="" title="">Личный кабинет</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page cabinet">
+            <div class="container">
+                <div class="title title-2">
+                    <h1 class="h2 grey m-t-3 m-b-2 text-xs-center"><span>Личный кабинет</span></h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 pull-xs-none text-xs-center">
+                        <ul class="tabs">
+                            <li>
+                                <a href="#tab-1" title="" class="{% if tab == 1 %}active{% endif %}" >Настройка профиля</a>
+                            </li>
+                            {% if profile.privacy == 'open' %}
+                            <li>
+                                <a href="#tab-2" title="" class="{% if tab == 2 %}active{% endif %}">История открытий номеров</a>
+                            </li>
+                            <li>
+                                <a href="#tab-3" title="" class="{% if tab == 3 %}active{% endif %}">Товары и услуги</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab {% if tab == 1 %}active{% endif %}" id="tab-1">
+
+                    <div class="title title-1">
+                        <h3 class="grey m-b-2"><span>Настройка профиля компании</span></h3>
+                    </div>
+                    <div class="border">
+                        <form enctype="multipart/form-data" method="post">{% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="file">
+                                        {% if profile.mugshot %}
+                                            <div id="output">
+                                                <div>
+                                                    <img src="{{ profile.mugshot.url }}">
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        <input type="file" id="file" name="mugshot" />
+                                        <span>Загрузить логотип</span>
+                                    </label>
+                                    <script>
+                                        function handleFileSelect(evt) {
+                                            var file = evt.target.files;
+                                            var f = file[0];
+                                            if (!f.type.match('image.*')) {
+                                                alert("Только изображения....");
+                                            }
+                                            var reader = new FileReader();
+                                            reader.onload = (function(theFile) {
+                                                return function(e) {
+                                                    var div = document.createElement('div');
+                                                    div.innerHTML = ['<img class="thumb" title="', escape(theFile.name), '" src="', e.target.result, '" />'].join('');
+                                                    document.getElementById('output').insertBefore(div, null);
+                                                };
+                                            })(f);
+                                            reader.readAsDataURL(f);
+                                        }
+                                        document.getElementById('file').addEventListener('change', handleFileSelect, false);
+                                    </script>
+                                </div>
+                                <div class="col-md-9">
+
+                                    <input type="text" name="company_name" value="{{ profile.company_name }}" placeholder="Название компании" />
+                                    <textarea rows="4" name="company_desc" placeholder="Описание компании">{{ profile.company_desc }}</textarea>
+                                    <input type="text" name="phone" value="{{ profile.phone }}" placeholder="Номер телефона" />
+                                    <input type="text" name="whatsapp" value="{{ profile.whatsapp }}" placeholder="Номер whatsapp" />
+                                    <select name="building" style='width: 100%;
+                                                    height: 40px;
+                                                    margin-top: 10px;
+                                                    margin-bottom: 10px;
+                                                    padding: 0 15px;
+                                                    border: 1px solid #dddddd;
+                                                    font-size: 1rem;
+
+                                                    -webkit-appearance: none;
+                                                    background: url({{ STATIC_URL }}img/icon-select-down.png) calc(100% - 15px) center no-repeat;'>
+                                        <option>Здание</option>
+                                        <option value="1" {% if profile.building == 1 %}selected{% endif %}>Саламат 1</option>
+                                        <option value="2" {% if profile.building == 2 %}selected{% endif %} >Саламат 2</option>
+                                        <option value="3" {% if profile.building == 3 %}selected{% endif %}>Саламат 3</option>
+                                        <option value="4" {% if profile.building == 4 %}selected{% endif %}>Саламат 4</option>
+                                        <option value="5" {% if profile.building == 5 %}selected{% endif %}>Саламат 5</option>
+                                    </select>
+                                    <select name="floor" style='width: 100%;
+                                                    height: 40px;
+                                                    margin-top: 10px;
+                                                    margin-bottom: 10px;
+                                                    padding: 0 15px;
+                                                    border: 1px solid #dddddd;
+                                                    font-size: 1rem;
+
+                                                    -webkit-appearance: none;
+                                                    background: url({{ STATIC_URL }}img/icon-select-down.png) calc(100% - 15px) center no-repeat;'>
+                                        <option>Этаж</option>
+                                        <option {% if profile.floor == '0' %}selected{% endif %} value="0"> 0</option>
+                                        <option {% if profile.floor == '1' %}selected{% endif %} value="1"> 1</option>
+                                        <option {% if profile.floor == '2' %}selected{% endif %} value="2">2</option>
+                                        <option {% if profile.floor == '3' %}selected{% endif %} value="3">3</option>
+                                        <option {% if profile.floor == '4' %}selected{% endif %} value="4">4</option>
+                                        <option {% if profile.floor == '5' %}selected{% endif %} value="5" >5</option>
+                                    </select>
+                                    <input type="text" name="apartment" value="{{ profile.apartment }}" placeholder="Номер бутика" />
+                                </div>
+                            </div>
+                            <div class="text-xs-center">
+                                <button class="btn mw save"><span>Сохранить</span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab {% if tab == 2 %}active{% endif %}" id="tab-2">
+
+                    <div class="title title-1">
+                        <h3 class="grey m-b-2"><span>История открытий номеров</span></h3>
+                    </div>
+                    <div class="border">
+                        <ul class="history">
+                            {% for h in profile.histories.all %}
+                            <li>{% if h.creator %}{{ h.creator }}{% else %}Анонимный пользователь{% endif %}<span>Был открыт {{ h.date_added|naturaltime }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab {% if tab == 3 %}active{% endif %}" id="tab-3">
+                    <div class="title title-1">
+                        <h3 class="grey m-b-2"><span>Управление товарами</span></h3>
+                    </div>
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="{% url 'product_create' %}" class="btn add"><span>Добавить товар/услугу</span></a>
+                            </div>
+                            <div class="col-md-9 text-md-right">
+                                <div class="form">
+                                    <input type="search" name="" placeholder="Поиск">
+                                    <button type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="responsive-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Фильтр</th>
+                                    <th>Цена:</th>
+                                    <th>Статус:</th>
+                                    <th>Тип:</th>
+                                    <th>Скидка:</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th><label class="checkbox"><input type="checkbox" name="all" value="all" hidden /><span></span></label></th>
+                                    <th>Фото</th>
+                                    <th style="width: 200px;">Название товара</th>
+                                    <th style="width: 140px;">Тип</th>
+                                    <th style="width: 120px;">Цена</th>
+                                    <th>Привлечение</th>
+                                    <th>Управление</th>
+                                </tr>
+
+                                {% for product in profile.products %}
+                                    <tr>
+                                        <td><label class="checkbox"><input type="checkbox" name="" value="" hidden /><span></span></label></td>
+                                        <td>
+                                            <div class="image">
+                                                <img src="{{ product.image.url }}" alt="" />
+                                            </div>
+                                        </td>
+                                        <td>{{ product.title }}</td>
+                                        <td>{{ product.get_product_type_display }}</td>
+                                        <td><span class="price">{% if  product.total %}{{ product.total|money_format}} тг.{% else %}Уточнить стоимость{%endif%}</span></td>
+                                        <td>
+                                            <a href="" title="">Скидка</a><br/>
+                                            <a href="" title="">Сопутствующие товары</a>
+                                        </td>
+                                        <td>
+                                            <button onclick="window.location.href='{{ product.url }}'" class="btn-1"><span>Просмотр</span></button>
+                                            <button onclick="window.location.href='{{ product.url_update }}'" class="btn-2"><span>Редактировать</span></button>
+                                            <button onclick="window.location.href='{{ product.url_delete }}'" class="btn-3"><span>Удалить</span></button>
+{#                                            <button class="btn-4"><span>Редактировать</span></button>#}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
